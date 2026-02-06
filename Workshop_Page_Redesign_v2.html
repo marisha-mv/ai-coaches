@@ -1,0 +1,4760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sweet Spot Workshop | Doha, Feb 24th 2026 | AICoaches</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;900&family=Sora:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #7F22FE;
+            --primary-dark: #2F0D68;
+            --primary-light: #F5F3FF;
+            --cta: #F59E0B;
+            --cta-hover: #D97706;
+            --success: #10B981;
+            --danger: #EF4444;
+            --dark: #0C0A09;
+            --gray-900: #1C1917;
+            --gray-700: #44403C;
+            --gray-600: #57534E;
+            --gray-400: #A8A29E;
+            --gray-200: #E7E5E4;
+            --light: #FAFAF9;
+            --white: #FFFFFF;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.03);
+            --shadow-2xl: 0 25px 50px -12px rgba(0,0,0,0.15);
+            --shadow-glow: 0 0 40px rgba(127, 34, 254, 0.15);
+            --shadow-cta: 0 4px 14px rgba(245, 158, 11, 0.4);
+
+            /* Transitions */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-700);
+            background: var(--white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Sora', sans-serif;
+            color: var(--gray-900);
+            letter-spacing: -0.02em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+
+        /* Button Base Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out-expo);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        /* ========================================
+           ANIMATIONS & INTERACTIONS
+        ======================================== */
+
+        /* Stagger animations */
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+
+        /* Fade up animation */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeUp {
+            animation: fadeUp 0.8s var(--ease-out-expo) forwards;
+            opacity: 0;
+        }
+
+        /* Scale in animation */
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-scaleIn {
+            animation: scaleIn 0.6s var(--ease-out-expo) forwards;
+            opacity: 0;
+        }
+
+        /* Slide in from left */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-slideLeft {
+            animation: slideInLeft 0.8s var(--ease-out-expo) forwards;
+            opacity: 0;
+        }
+
+        /* Slide in from right */
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-slideRight {
+            animation: slideInRight 0.8s var(--ease-out-expo) forwards;
+            opacity: 0;
+        }
+
+        /* Number counting glow */
+        @keyframes numberPulse {
+            0%, 100% { text-shadow: 0 0 0 transparent; }
+            50% { text-shadow: 0 0 20px rgba(245, 158, 11, 0.5); }
+        }
+
+        .number-updating {
+            animation: numberPulse 0.3s ease;
+        }
+
+        /* Card hover 3D tilt */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.3s var(--ease-out-expo);
+        }
+
+        /* Magnetic button effect */
+        .magnetic-btn {
+            transition: transform 0.3s var(--ease-out-expo);
+        }
+
+        /* Spotlight cursor effect */
+        .spotlight-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spotlight {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(127, 34, 254, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 0;
+        }
+
+        .spotlight-container:hover .spotlight {
+            opacity: 1;
+        }
+
+        /* Ripple effect on buttons */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Progress bar animation */
+        @keyframes progressFill {
+            from { width: 0; }
+        }
+
+        .animate-progress {
+            animation: progressFill 1.5s var(--ease-out-expo) forwards;
+        }
+
+        /* Floating animation for badges */
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .float-animation {
+            animation: gentleFloat 4s ease-in-out infinite;
+        }
+
+        /* Shine effect on cards */
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 100%
+            );
+            transform: rotate(30deg) translateX(-100%);
+            transition: transform 0.8s;
+            pointer-events: none;
+        }
+
+        .shine-effect:hover::after {
+            transform: rotate(30deg) translateX(100%);
+        }
+
+        /* Typing cursor for hero */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: var(--cta);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Counter animation styles */
+        .counter {
+            display: inline-block;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ========================================
+           STICKY HEADER
+        ======================================== */
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--primary-dark);
+            color: white;
+            padding: 12px 0;
+            z-index: 1000;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .sticky-header.visible {
+            transform: translateY(0);
+        }
+
+        .sticky-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .sticky-header .urgency {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 14px;
+        }
+
+        .sticky-header .live-badge {
+            background: var(--danger);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 12px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .sticky-header .cta-small {
+            background: var(--cta);
+            color: var(--dark);
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .sticky-header .cta-small:hover {
+            background: var(--cta-hover);
+            transform: scale(1.02);
+        }
+
+        /* ========================================
+           TOP BAR
+        ======================================== */
+        .top-bar {
+            background: var(--primary-dark);
+            color: white;
+            padding: 12px 0;
+            font-size: 14px;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .top-bar .live-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--danger);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .top-bar .live-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        .top-bar .event-info {
+            font-weight: 500;
+        }
+
+        .top-bar .seats {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 6px 16px;
+            border-radius: 20px;
+        }
+
+        .top-bar .seats-count {
+            font-weight: 700;
+            color: var(--cta);
+        }
+
+        /* ========================================
+           HERO SECTION
+        ======================================== */
+        .hero {
+            background: linear-gradient(270deg, #ECDEFF 0%, #F5F5F4 100%);
+            padding: 60px 0 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 700px;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: end;
+        }
+
+        @media (max-width: 968px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding-bottom: 60px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-dark);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 5vw, 60px);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--primary-dark);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--gray-600);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .hero-event-details {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        @media (max-width: 968px) {
+            .hero-event-details {
+                justify-content: center;
+            }
+        }
+
+        .hero-cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        @media (max-width: 968px) {
+            .hero-cta-group {
+                align-items: center;
+            }
+        }
+
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--cta) 0%, #f7b733 100%);
+            color: var(--gray-900);
+            padding: 18px 36px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.4s var(--ease-out-expo);
+            box-shadow: var(--shadow-cta), 0 0 0 0 rgba(245, 158, 11, 0);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.25) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.5), 0 0 0 0 rgba(245, 158, 11, 0);
+        }
+
+        .cta-primary:hover::before {
+            opacity: 1;
+        }
+
+        .cta-primary:active {
+            transform: translateY(-1px);
+        }
+
+        .cta-primary svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s var(--ease-out-expo);
+        }
+
+        .cta-primary:hover svg {
+            transform: translateX(4px);
+        }
+
+        .cta-subtext {
+            font-size: 14px;
+            color: var(--gray-600);
+            font-style: italic;
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        .hero-image img {
+            max-height: 650px;
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.1));
+        }
+
+        /* Matt placeholder */
+        .matt-image {
+            width: 450px;
+            height: 650px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            position: relative;
+        }
+
+        .matt-image::after {
+            content: 'Matt Kesby Image\A(Pull from Matt_AIcoaches.png)';
+            white-space: pre-wrap;
+            text-align: center;
+        }
+
+        /* ========================================
+           LOGOS BAR (Featured In)
+        ======================================== */
+        .logos-bar {
+            background: var(--gray-900);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logos-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .logos-bar .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logos-bar .section-header p {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 8px;
+        }
+
+        .logos-bar .section-header h3 {
+            font-size: 20px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .logos-label {
+            text-align: center;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .logos-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 56px;
+            flex-wrap: wrap;
+        }
+
+        .logos-grid .logo-item {
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.7);
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 2px;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .logos-grid .logo-item:hover {
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .logos-grid .logo-item img {
+            height: 28px;
+            opacity: 0.7;
+            filter: brightness(0) invert(1);
+            transition: all 0.3s;
+        }
+
+        .logos-grid .logo-item:hover img {
+            opacity: 1;
+        }
+
+        /* ========================================
+           VIDEO SECTION
+        ======================================== */
+        .video-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .video-section h2 {
+            text-align: center;
+            font-size: 36px;
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+        }
+
+        .video-section .subtitle {
+            text-align: center;
+            color: var(--gray-600);
+            margin-bottom: 48px;
+            font-size: 18px;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .video-placeholder {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .video-placeholder:hover {
+            transform: scale(1.02);
+        }
+
+        .video-placeholder .play-btn {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .video-placeholder .play-btn svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--primary);
+            margin-left: 4px;
+        }
+
+        .video-placeholder p {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .video-placeholder span {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* ========================================
+           ABOUT MATT SECTION
+        ======================================== */
+        .about-matt {
+            padding: 120px 0;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-matt::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-light) 0%, transparent 70%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .about-matt-grid {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 72px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 968px) {
+            .about-matt-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+
+        .matt-photo-container {
+            position: relative;
+        }
+
+        .matt-photo {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, var(--gray-900) 0%, #2a1a4a 100%);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .matt-photo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(127, 34, 254, 0.4) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .matt-photo::after {
+            content: 'Matt Kesby Photo';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+        }
+
+        .matt-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .matt-credentials-badge {
+            position: absolute;
+            bottom: -24px;
+            right: -24px;
+            background: white;
+            border-radius: 18px;
+            padding: 22px 28px;
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        @media (max-width: 968px) {
+            .matt-credentials-badge {
+                right: 16px;
+                bottom: -20px;
+            }
+        }
+
+        .matt-credentials-badge .number {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--cta) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Sora', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .matt-credentials-badge .label {
+            font-size: 13px;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .about-matt-content .eyebrow {
+            display: inline-block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 20px;
+            background: var(--primary-light);
+            padding: 8px 16px;
+            border-radius: 100px;
+        }
+
+        .about-matt-content h2 {
+            font-size: clamp(36px, 4.5vw, 52px);
+            color: var(--gray-900);
+            margin-bottom: 28px;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
+
+        .about-matt-content .bio {
+            font-size: 17px;
+            color: var(--gray-600);
+            line-height: 1.85;
+            margin-bottom: 36px;
+        }
+
+        .about-matt-content .bio strong {
+            color: var(--gray-900);
+            font-weight: 600;
+        }
+
+        .matt-credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 36px;
+        }
+
+        @media (max-width: 500px) {
+            .matt-credentials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .credential-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px;
+            background: var(--light);
+            border-radius: 14px;
+            transition: all 0.4s var(--ease-out-expo);
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .credential-item.animate-fadeUp {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .credential-item:hover {
+            background: var(--primary-light);
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .credential-item .icon {
+            width: 44px;
+            height: 44px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .credential-item .icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--primary);
+        }
+
+        .credential-item .text {
+            font-size: 13px;
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+
+        .credential-item .text strong {
+            display: block;
+            color: var(--gray-900);
+            font-size: 14px;
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+
+        .matt-book {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            background: linear-gradient(135deg, var(--gray-900) 0%, #2a1a4a 100%);
+            border-radius: 18px;
+            padding: 24px 28px;
+            color: white;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .matt-book:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .matt-book .book-cover {
+            width: 72px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--cta) 0%, #f7b733 100%);
+            border-radius: 6px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-900);
+            font-size: 10px;
+            font-weight: 700;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .matt-book .book-info h4 {
+            font-size: 17px;
+            color: white;
+            margin-bottom: 6px;
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+        }
+
+        .matt-book .book-info p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+        }
+
+        .matt-book .book-info .publisher {
+            color: var(--cta);
+            font-weight: 600;
+        }
+
+        /* Companies Matt Has Worked With */
+        .matt-companies {
+            margin-top: 48px;
+            padding-top: 48px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .matt-companies h4 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray-400);
+            margin-bottom: 28px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .matt-companies-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .matt-companies-logos .company-logo {
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.6;
+            transition: all 0.3s var(--ease-out-expo);
+            filter: grayscale(100%);
+        }
+
+        .matt-companies-logos .company-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .matt-companies-logos .company-logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        .matt-companies-logos .company-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-600);
+            letter-spacing: 1px;
+        }
+
+        /* Global Brands Matt Has Worked With - Inline under bio */
+        .matt-global-brands {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .matt-global-brands h4 {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--gray-500);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .matt-global-brands .brand-names {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+        }
+
+        .matt-global-brands .brand-names span {
+            font-family: 'Sora', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--primary);
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .matt-global-brands .brand-names span:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .matt-global-brands .brand-names {
+                gap: 10px 20px;
+            }
+
+            .matt-global-brands .brand-names span {
+                font-size: 14px;
+            }
+        }
+
+        /* ========================================
+           FRAMEWORK SECTION (Redesigned)
+        ======================================== */
+        .framework-section {
+            padding: 80px 0;
+            background: var(--primary-light);
+        }
+
+        .framework-section .container {
+            max-width: 1100px;
+        }
+
+        .framework-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .framework-header h2 {
+            font-size: 42px;
+            color: var(--primary);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .framework-header p {
+            font-size: 20px;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Timeline style from original */
+        .framework-timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .framework-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            border-left: 2px dashed var(--primary);
+        }
+
+        .framework-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 32px;
+            margin-bottom: 40px;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s var(--ease-out-expo);
+        }
+
+        .framework-step.animate-fadeUp {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .framework-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .framework-step .dot {
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .framework-step .dot::after {
+            content: '';
+            width: 18px;
+            height: 18px;
+            background: var(--primary-dark);
+            border-radius: 50%;
+        }
+
+        .framework-step .content {
+            background: white;
+            padding: 24px 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            flex: 1;
+        }
+
+        .framework-step .content h3 {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .framework-step .content p {
+            font-size: 16px;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .framework-badge {
+            display: inline-block;
+            background: var(--primary-dark);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* ========================================
+           ROI CALCULATOR - Premium Design
+        ======================================== */
+        .calculator-section {
+            padding: 120px 0;
+            background: linear-gradient(180deg, var(--gray-900) 0%, #1a0a2e 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated gradient orbs */
+        .calculator-section::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(127, 34, 254, 0.4) 0%, transparent 60%);
+            filter: blur(80px);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .calculator-section::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, transparent 60%);
+            filter: blur(80px);
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* Grid pattern overlay */
+        .calculator-bg-pattern {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .calculator-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .calculator-header .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.05) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--cta);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .calculator-header .eyebrow svg {
+            animation: spin 8s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .calculator-header h2 {
+            font-size: clamp(36px, 5vw, 56px);
+            margin-bottom: 20px;
+            line-height: 1.05;
+            color: white;
+            font-weight: 700;
+        }
+
+        .calculator-header p {
+            font-size: 19px;
+            color: rgba(255,255,255,0.6);
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .calculator-card {
+            max-width: 1080px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 28px;
+            backdrop-filter: blur(40px);
+            overflow: hidden;
+            box-shadow:
+                0 4px 24px rgba(0,0,0,0.2),
+                0 0 0 1px rgba(255,255,255,0.05) inset,
+                0 40px 80px -20px rgba(0,0,0,0.4);
+        }
+
+        .calculator-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: 900px) {
+            .calculator-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .calculator-divider {
+            display: none;
+        }
+
+        /* Input Side */
+        .calculator-inputs {
+            padding: 52px;
+            background: rgba(0,0,0,0.2);
+            border-right: 1px solid rgba(255,255,255,0.06);
+        }
+
+        @media (max-width: 900px) {
+            .calculator-inputs {
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .calculator-inputs {
+                padding: 36px 28px;
+            }
+        }
+
+        .calculator-inputs .section-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 36px;
+            font-weight: 500;
+        }
+
+        .input-field {
+            margin-bottom: 28px;
+        }
+
+        .input-field:last-child {
+            margin-bottom: 0;
+        }
+
+        .input-field label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-prefix {
+            position: absolute;
+            left: 18px;
+            font-size: 17px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.35);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .input-field input[type="number"] {
+            width: 100%;
+            padding: 16px 18px;
+            padding-left: 34px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.04);
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.25s var(--ease-out-expo);
+        }
+
+        .input-field input[type="number"]:hover {
+            border-color: rgba(255,255,255,0.18);
+            background: rgba(255,255,255,0.06);
+        }
+
+        .input-field input[type="number"]:focus {
+            outline: none;
+            border-color: var(--cta);
+            background: rgba(255,255,255,0.06);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.12), 0 0 20px rgba(245, 158, 11, 0.1);
+        }
+
+        .input-field input[type="number"]::placeholder {
+            color: rgba(255,255,255,0.25);
+            font-weight: 400;
+        }
+
+        /* Remove number spinners */
+        .input-field input[type="number"]::-webkit-outer-spin-button,
+        .input-field input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .input-field input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        /* Slider Field */
+        .slider-field {
+            margin-bottom: 28px;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .slider-header label {
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 0.3px;
+        }
+
+        .slider-value-display {
+            background: linear-gradient(135deg, var(--cta) 0%, #f7b733 100%);
+            color: var(--gray-900);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            min-width: 52px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+        }
+
+        .slider-container {
+            position: relative;
+            padding: 12px 0;
+        }
+
+        .slider-track {
+            position: relative;
+            height: 6px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 100px;
+            overflow: visible;
+        }
+
+        .slider-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--cta) 100%);
+            border-radius: 100px;
+            transition: width 0.15s var(--ease-out-expo);
+            box-shadow: 0 0 12px rgba(127, 34, 254, 0.4);
+        }
+
+        .slider-field input[type="range"] {
+            position: absolute;
+            top: 6px;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: 18px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .slider-field input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, white 0%, #f0f0f0 100%);
+            cursor: grab;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 0 0 3px rgba(255,255,255,0.15);
+            transition: all 0.2s var(--ease-out-expo);
+            border: none;
+        }
+
+        .slider-field input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3), 0 0 0 4px rgba(255,255,255,0.2);
+        }
+
+        .slider-field input[type="range"]::-webkit-slider-thumb:active {
+            cursor: grabbing;
+            transform: scale(1.05);
+        }
+
+        .slider-field input[type="range"]::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: white;
+            cursor: grab;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 11px;
+            color: rgba(255,255,255,0.35);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* Select Field */
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper::after {
+            content: '';
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid rgba(255,255,255,0.4);
+            pointer-events: none;
+            transition: transform 0.2s;
+        }
+
+        .input-field select {
+            width: 100%;
+            padding: 16px 44px 16px 18px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.04);
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            transition: all 0.25s var(--ease-out-expo);
+        }
+
+        .input-field select:hover {
+            border-color: rgba(255,255,255,0.18);
+            background: rgba(255,255,255,0.06);
+        }
+
+        .input-field select:focus {
+            outline: none;
+            border-color: var(--cta);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.12);
+        }
+
+        .input-field select option {
+            background: var(--gray-900);
+            color: white;
+            padding: 12px;
+        }
+
+        /* Results Side */
+        .calculator-results {
+            padding: 52px;
+            display: flex;
+            flex-direction: column;
+            background: transparent;
+        }
+
+        @media (max-width: 600px) {
+            .calculator-results {
+                padding: 36px 28px;
+            }
+        }
+
+        .calculator-results .section-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 28px;
+            font-weight: 500;
+        }
+
+        .results-stack {
+            flex: 1;
+        }
+
+        .result-row {
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .result-row:first-child {
+            padding-top: 0;
+        }
+
+        .result-row .result-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .result-row .result-label .formula {
+            font-size: 10px;
+            background: rgba(255,255,255,0.06);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            letter-spacing: 0;
+        }
+
+        .result-row .result-value {
+            font-size: 26px;
+            font-weight: 700;
+            color: white;
+            font-family: 'Sora', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        /* Main Result - Hero Treatment */
+        .result-hero {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(127, 34, 254, 0.12) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+            border-radius: 20px;
+            padding: 36px 32px;
+            margin-top: 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.5), transparent);
+        }
+
+        .result-hero .result-eyebrow {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--cta);
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        .result-hero .result-value {
+            font-size: clamp(44px, 7vw, 60px);
+            font-weight: 800;
+            background: linear-gradient(135deg, white 0%, var(--cta) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.05;
+            margin-bottom: 10px;
+            letter-spacing: -0.03em;
+        }
+
+        .result-hero .result-context {
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* CTA in Calculator */
+        .calculator-cta-section {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .calculator-cta-section .cta-primary {
+            width: 100%;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--cta) 0%, #f7b733 100%);
+            border: none;
+            font-size: 15px;
+            padding: 16px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            color: var(--gray-900);
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .calculator-cta-section .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.45);
+        }
+
+        .calculator-cta-section .cta-note {
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            margin-top: 14px;
+        }
+
+        /* Disclaimer */
+        .calculator-disclaimer {
+            text-align: center;
+            margin-top: 48px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* ========================================
+           CASE STUDY SECTION
+        ======================================== */
+        .case-study-section {
+            padding: 120px 0;
+            background: linear-gradient(180deg, var(--light) 0%, white 100%);
+            position: relative;
+        }
+
+        .case-study-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .case-study-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .case-study-header .eyebrow {
+            display: inline-block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 20px;
+            background: var(--primary-light);
+            padding: 8px 16px;
+            border-radius: 100px;
+        }
+
+        .case-study-header h2 {
+            font-size: clamp(32px, 4vw, 46px);
+            color: var(--primary-dark);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .case-study-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl), 0 0 0 1px rgba(0,0,0,0.03);
+            transition: all 0.4s var(--ease-out-expo);
+        }
+
+        .case-study-card:hover {
+            box-shadow: var(--shadow-2xl), 0 0 0 1px rgba(0,0,0,0.03);
+            transform: translateY(-4px);
+        }
+
+        .case-study-hero {
+            background: linear-gradient(135deg, var(--gray-900) 0%, #2a1a4a 100%);
+            padding: 52px;
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-study-hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(127, 34, 254, 0.3) 0%, transparent 70%);
+            filter: blur(60px);
+        }
+
+        @media (max-width: 700px) {
+            .case-study-hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 40px 32px;
+            }
+        }
+
+        .case-study-hero .company-info {
+            position: relative;
+            z-index: 1;
+        }
+
+        .case-study-hero .company-info h3 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+        }
+
+        .case-study-hero .company-info h4 {
+            font-size: 30px;
+            margin-bottom: 12px;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .case-study-hero .company-info p {
+            opacity: 0.7;
+            font-size: 15px;
+        }
+
+        .case-study-hero .result-badge {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            padding: 36px 44px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .case-study-hero .result-badge .number {
+            font-size: 52px;
+            font-weight: 800;
+            font-family: 'Sora', sans-serif;
+            line-height: 1;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, white 0%, var(--cta) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .case-study-hero .result-badge .label {
+            font-size: 13px;
+            opacity: 0.7;
+            font-weight: 500;
+        }
+
+        .case-study-content {
+            padding: 52px;
+        }
+
+        @media (max-width: 700px) {
+            .case-study-content {
+                padding: 36px 28px;
+            }
+        }
+
+        .case-study-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 44px;
+        }
+
+        @media (max-width: 600px) {
+            .case-study-metrics {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 28px 24px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #EDE9FE 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(127, 34, 254, 0.08);
+            transition: all 0.4s var(--ease-out-expo);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .metric-card.animate-fadeUp {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+        }
+
+        .metric-card .metric-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-family: 'Sora', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .metric-card .metric-label {
+            font-size: 13px;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .case-study-quote {
+            border-left: 3px solid var(--primary);
+            padding-left: 28px;
+            margin-bottom: 36px;
+        }
+
+        .case-study-quote p {
+            font-size: 19px;
+            font-style: italic;
+            color: var(--gray-600);
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+
+        .case-study-quote .author {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .case-study-timeline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            padding: 0;
+            background: transparent;
+        }
+
+        .case-study-timeline .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px 32px;
+            background: var(--light);
+            border-radius: 12px;
+            font-size: 13px;
+            color: var(--gray-600);
+            flex: 1;
+            position: relative;
+        }
+
+        .case-study-timeline .step strong {
+            display: block;
+            color: var(--primary);
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .case-study-timeline .arrow {
+            color: var(--primary);
+            font-size: 20px;
+            padding: 0 8px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 700px) {
+            .case-study-timeline {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .case-study-timeline .step {
+                width: 100%;
+            }
+            .case-study-timeline .arrow {
+                transform: rotate(90deg);
+                padding: 4px 0;
+            }
+        }
+
+
+        /* ========================================
+           WHO'S IN THE ROOM
+        ======================================== */
+        .whos-in-room {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .whos-in-room h2 {
+            font-size: 40px;
+            text-align: center;
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+        }
+
+        .whos-in-room .subtitle {
+            text-align: center;
+            color: var(--gray-600);
+            margin-bottom: 48px;
+            font-size: 18px;
+        }
+
+        .room-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        @media (max-width: 768px) {
+            .room-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .room-stat {
+            text-align: center;
+            padding: 32px 24px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #EDE9FE 100%);
+            border-radius: 20px;
+        }
+
+        .room-stat .percentage {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .room-stat .label {
+            font-size: 14px;
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .companies-section {
+            background: var(--light);
+            padding: 40px;
+            border-radius: 24px;
+        }
+
+        .companies-section h3 {
+            text-align: center;
+            font-size: 14px;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 32px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .company-logos {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .company-logos {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .company-logo {
+            height: 70px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .company-logo img {
+            max-height: 40px;
+            max-width: 100%;
+            opacity: 0.8;
+        }
+
+        /* Fake logos for demo */
+        .company-logo .fake-logo {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .industries-list {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .industry-tag {
+            background: white;
+            border: 2px solid var(--primary);
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* ========================================
+           TESTIMONIALS
+        ======================================== */
+        .testimonials {
+            padding: 120px 0;
+            background: linear-gradient(180deg, white 0%, var(--light) 100%);
+            position: relative;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .testimonials-header .eyebrow {
+            display: inline-block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 20px;
+            background: var(--primary-light);
+            padding: 8px 16px;
+            border-radius: 100px;
+        }
+
+        .testimonials h2 {
+            font-size: clamp(36px, 4.5vw, 48px);
+            text-align: center;
+            color: var(--primary-dark);
+            letter-spacing: -0.02em;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 968px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 36px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.4s var(--ease-out-expo);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 24px;
+            right: 28px;
+            font-size: 64px;
+            font-family: Georgia, serif;
+            color: var(--primary-light);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .testimonial-card .value-headline {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+            line-height: 1.35;
+            font-family: 'Sora', sans-serif;
+            letter-spacing: -0.01em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card .quote {
+            font-style: italic;
+            color: var(--gray-600);
+            font-size: 15px;
+            line-height: 1.75;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .testimonial-card .avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .testimonial-card .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-card .author-info .name {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 15px;
+        }
+
+        .testimonial-card .author-info .title {
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+
+        .testimonial-card .author-info .company {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Video testimonial card */
+        .testimonial-card.video {
+            background: linear-gradient(135deg, var(--gray-900) 0%, #2a1a4a 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 340px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card.video::before {
+            display: none;
+        }
+
+        .testimonial-card.video::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(127, 34, 254, 0.4) 0%, transparent 60%);
+            filter: blur(40px);
+            pointer-events: none;
+        }
+
+        .testimonial-card.video:hover {
+            transform: translateY(-6px) scale(1.01);
+        }
+
+        .testimonial-card.video .play-btn {
+            width: 72px;
+            height: 72px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .testimonial-card.video:hover .play-btn {
+            transform: scale(1.08);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .testimonial-card.video .play-btn svg {
+            width: 26px;
+            height: 26px;
+            fill: var(--primary);
+            margin-left: 4px;
+        }
+
+        .testimonial-card.video p {
+            font-weight: 600;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card.video span {
+            font-size: 14px;
+            opacity: 0.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========================================
+           VALUE STACK (Enhanced)
+        ======================================== */
+        .value-stack {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .value-stack h2 {
+            font-size: 40px;
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .value-stack .subtitle {
+            text-align: center;
+            color: var(--gray-600);
+            margin-bottom: 48px;
+            font-size: 18px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+        }
+
+        @media (max-width: 768px) {
+            .value-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .value-card {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #EDE9FE 100%);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        .value-card .value-amount {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .value-card h4 {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            padding-right: 80px;
+        }
+
+        .value-card p {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        .value-card.featured {
+            grid-column: span 2;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .value-card.featured {
+                grid-column: span 1;
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .value-card.featured::before {
+            display: none;
+        }
+
+        .value-card.featured .value-amount {
+            background: var(--cta);
+            color: var(--dark);
+        }
+
+        .value-card.featured h4 {
+            color: white;
+            font-size: 28px;
+        }
+
+        .value-card.featured p {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .value-card.featured .tools-preview {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .value-card.featured .tools-preview p {
+            font-size: 13px;
+            margin-top: 12px;
+        }
+
+        .value-total {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--light);
+            padding: 32px 40px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .value-total .total-info h3 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .value-total .total-info p {
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+
+        .value-total .investment {
+            text-align: right;
+        }
+
+        .value-total .investment .price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .value-total .investment .note {
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+
+        /* ========================================
+           COMPANIES REPRESENTED SECTION - Marquee Style
+        ======================================== */
+        .companies-represented {
+            padding: 0 24px 60px;
+            overflow: visible;
+            position: relative;
+        }
+
+        .companies-box {
+            max-width: 900px;
+            margin: -120px auto 0;
+            background: var(--light);
+            border-radius: 24px;
+            padding: 48px 0;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        .companies-represented h2 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gray-500);
+            text-align: center;
+            margin-bottom: 32px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .marquee-wrapper {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .marquee-wrapper::before,
+        .marquee-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .marquee-wrapper::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--light) 0%, transparent 100%);
+        }
+
+        .marquee-wrapper::after {
+            right: 0;
+            background: linear-gradient(-90deg, var(--light) 0%, transparent 100%);
+        }
+
+        .marquee {
+            display: flex;
+            gap: 20px;
+            animation: marquee-left 30s linear infinite;
+        }
+
+        .marquee-reverse {
+            animation: marquee-right 30s linear infinite;
+        }
+
+        .marquee:hover,
+        .marquee-reverse:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes marquee-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .company-chip {
+            background: white;
+            padding: 18px 32px;
+            border-radius: 60px;
+            font-family: 'Sora', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-700);
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .company-chip:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            transform: scale(1.05);
+        }
+
+        .industry-tags {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 48px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .industry-tag {
+            padding: 12px 24px;
+            border: 2px solid var(--cta);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--cta);
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .industry-tag:hover {
+            background: var(--cta);
+            color: var(--gray-900);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .company-chip {
+                padding: 14px 24px;
+                font-size: 13px;
+            }
+
+            .industry-tag {
+                padding: 10px 18px;
+                font-size: 13px;
+            }
+
+            .marquee-wrapper::before,
+            .marquee-wrapper::after {
+                width: 60px;
+            }
+        }
+
+        /* ========================================
+           AUDIENCE SECTION (Horizontal Scroll)
+        ======================================== */
+        .audience-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--light) 0%, white 100%);
+            overflow: hidden;
+        }
+
+        .audience-section .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+            padding: 0 24px;
+        }
+
+        .audience-section .section-header .eyebrow {
+            display: inline-block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 16px;
+            background: var(--primary-light);
+            padding: 8px 16px;
+            border-radius: 100px;
+        }
+
+        .audience-section h2 {
+            font-size: clamp(32px, 4vw, 44px);
+            color: var(--primary-dark);
+            letter-spacing: -0.02em;
+        }
+
+        /* Horizontal scroll container */
+        .audience-scroll-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .audience-scroll-wrapper::before,
+        .audience-scroll-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .audience-scroll-wrapper::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--light) 0%, transparent 100%);
+        }
+
+        .audience-scroll-wrapper::after {
+            right: 0;
+            background: linear-gradient(270deg, white 0%, transparent 100%);
+        }
+
+        .audience-scroll {
+            display: flex;
+            gap: 24px;
+            padding: 20px 60px 40px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            cursor: grab;
+        }
+
+        .audience-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .audience-scroll:active {
+            cursor: grabbing;
+        }
+
+        .audience-card {
+            flex: 0 0 340px;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.4s var(--ease-out-expo);
+            scroll-snap-align: center;
+        }
+
+        .audience-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-2xl), var(--shadow-glow);
+        }
+
+        .audience-card-header {
+            background: linear-gradient(135deg, var(--gray-900) 0%, #2a1a4a 100%);
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .audience-card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(127, 34, 254, 0.4) 0%, transparent 60%);
+            filter: blur(30px);
+        }
+
+        .audience-card-header h3 {
+            color: white;
+            font-size: 22px;
+            font-weight: 700;
+            font-family: 'Sora', sans-serif;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.01em;
+        }
+
+        .audience-card-header .icon {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 52px;
+            height: 52px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            z-index: 1;
+        }
+
+        .audience-card-header .icon svg {
+            width: 26px;
+            height: 26px;
+            stroke: white;
+            stroke-width: 1.5;
+        }
+
+        .audience-card-body {
+            padding: 28px;
+        }
+
+        .audience-card-body h4 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gray-400);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .audience-card-body p {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 24px;
+            line-height: 1.65;
+        }
+
+        .audience-card-body ul {
+            list-style: none;
+        }
+
+        .audience-card-body li {
+            padding: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--gray-700);
+            font-weight: 500;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .audience-card-body li:last-child {
+            border-bottom: none;
+        }
+
+        .audience-card-body li svg {
+            flex-shrink: 0;
+            color: var(--success);
+            margin-top: 2px;
+        }
+
+        /* Scroll indicators */
+        .scroll-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 32px;
+        }
+
+        .scroll-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gray-200);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .scroll-dot.active {
+            background: var(--primary);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* Scroll hint */
+        .scroll-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+            font-size: 13px;
+            color: var(--gray-400);
+        }
+
+        .scroll-hint svg {
+            animation: scrollHint 1.5s ease-in-out infinite;
+        }
+
+        @keyframes scrollHint {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
+        }
+
+        /* ========================================
+           AGENDA (Original Style)
+        ======================================== */
+        .agenda-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .agenda-section h2 {
+            font-size: 40px;
+            text-align: center;
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+        }
+
+        .agenda-section .subtitle {
+            text-align: center;
+            color: var(--gray-600);
+            margin-bottom: 24px;
+            font-size: 18px;
+        }
+
+        .agenda-tech-logos {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .agenda-tech-logos .tech-logo {
+            width: 60px;
+            height: 60px;
+            background: var(--light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: var(--gray-400);
+        }
+
+        .agenda-items {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .agenda-item {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 0;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s var(--ease-out-expo);
+        }
+
+        .agenda-item.animate-fadeUp {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .agenda-item::before {
+            content: '';
+            position: absolute;
+            left: 17px;
+            top: 50px;
+            bottom: -30px;
+            width: 2px;
+            border-left: 2px solid var(--primary);
+        }
+
+        .agenda-item:last-child::before {
+            display: none;
+        }
+
+        .agenda-item .session-marker {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .agenda-item .session-num {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .agenda-item .session-content {
+            flex: 1;
+            background: var(--light);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 24px;
+        }
+
+        .agenda-item .session-label {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 200;
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+
+        .agenda-item .session-title {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+
+        .agenda-item .session-description {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           CTA SECTION
+        ======================================== */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #4C1D95 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(32px, 4vw, 48px);
+            margin-bottom: 16px;
+            line-height: 1.2;
+            color: white;
+        }
+
+        .cta-section .outcome {
+            font-size: 22px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-section .cta-primary {
+            font-size: 20px;
+            padding: 22px 48px;
+        }
+
+        .cta-section .seats-remaining {
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cta-section .seats-remaining .count {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .cta-section .seats-remaining .progress-bar {
+            width: 200px;
+            height: 10px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .cta-section .seats-remaining .progress-fill {
+            height: 100%;
+            width: 67%;
+            background: var(--cta);
+            border-radius: 10px;
+        }
+
+        /* What happens on call */
+        .call-details {
+            max-width: 700px;
+            margin: 48px auto 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: left;
+        }
+
+        .call-details h3 {
+            text-align: center;
+            margin-bottom: 24px;
+            font-size: 20px;
+            color: white;
+        }
+
+        .call-steps {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .call-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .call-step {
+            display: flex;
+            gap: 16px;
+        }
+
+        .call-step .step-num {
+            width: 32px;
+            height: 32px;
+            background: var(--cta);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .call-step .step-info h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            font-family: 'DM Sans', sans-serif;
+            color: white;
+        }
+
+        .call-step .step-info p {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 0;
+            color: white;
+        }
+
+        /* ========================================
+           FAQS
+        ======================================== */
+        .faqs-section {
+            padding: 80px 0;
+            background: var(--light);
+        }
+
+        .faqs-section h2 {
+            font-size: 40px;
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 48px;
+        }
+
+        .faq-items {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .faq-question {
+            padding: 24px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 900;
+            font-size: 18px;
+            color: var(--primary-dark);
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--primary-light);
+        }
+
+        .faq-question .chevron {
+            transition: transform 0.3s;
+            color: var(--primary);
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+
+        .faq-item.open .faq-question .chevron {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer .inner {
+            padding: 0 28px 24px;
+            color: var(--gray-600);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* ========================================
+           FINAL CTA
+        ======================================== */
+        .final-cta {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 40px;
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+        }
+
+        .final-cta .outcome {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--cta);
+            text-decoration: none;
+        }
+
+        /* ========================================
+           UTILITIES
+        ======================================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sticky Header -->
+    <div class="sticky-header" id="stickyHeader">
+        <div class="container">
+            <div class="urgency">
+                <span class="live-badge">LIVE IN DOHA</span>
+                <span>Feb 24th | <strong style="color: #FCD34D;">100 seats remaining</strong></span>
+            </div>
+            <a href="#apply" class="cta-small">Secure Your Seat →</a>
+        </div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span class="live-badge">HAPPENING LIVE</span>
+            <span class="event-info">Doha, Qatar | February 24th, 2026</span>
+            <span class="seats">Only <span class="seats-count">150</span> seats | Exclusive to 150 C-Suite Leaders</span>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    Exclusive to 150 C-Suite Leaders
+                </div>
+
+                <h1>Turn AI Into Millions <span>In Enterprise Value</span></h1>
+
+                <p class="hero-subtitle">The AI Sweet Spot Framework™ | A 1-Day Workshop with Matt Kesby</p>
+
+                <p class="hero-description">Join 150 C-Suite leaders in Doha to master the framework that's added $47M+ to client valuations. Walk away with a clear roadmap to capture 10-40% productivity gains.</p>
+
+                <div class="hero-event-details">
+                    <span>24th February 2026</span>
+                    <span>|</span>
+                    <span>Doha, Qatar</span>
+                </div>
+
+                <div class="hero-cta-group">
+                    <a href="#apply" class="cta-primary">
+                        Speak With Your Workshop Concierge
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                    <p class="cta-subtext">Your concierge will confirm your seat and answer any questions</p>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <!-- Replace with actual image: Matt_AIcoaches.png -->
+                <div class="matt-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted Logos Bar -->
+    <section class="logos-bar">
+        <div class="container">
+            <p class="logos-label">As Featured In</p>
+            <div class="logos-grid">
+                <div class="logo-item">FORBES</div>
+                <div class="logo-item">YPO</div>
+                <div class="logo-item">AWS</div>
+                <div class="logo-item">DELL</div>
+                <div class="logo-item">ENTREPRENEUR</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <h2>See What This Workshop Is About</h2>
+            <p class="subtitle">Watch Matt explain the AI Sweet Spot Framework in 2 minutes</p>
+
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </div>
+                    <p>Watch Introduction Video</p>
+                    <span>2:34 minutes</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Matt Section -->
+    <section class="about-matt">
+        <div class="container">
+            <div class="about-matt-grid">
+                <div class="matt-photo-container fade-in">
+                    <div class="matt-photo">
+                        <!-- Replace with actual image -->
+                    </div>
+                    <div class="matt-credentials-badge float-animation">
+                        <span class="number">$47M+</span>
+                        <span class="label">Added to client valuations</span>
+                    </div>
+                </div>
+
+                <div class="about-matt-content">
+                    <div class="eyebrow">Your Workshop Leader</div>
+                    <h2>Matt Kesby</h2>
+                    <p class="bio">
+                        Matt is the founder of <strong>AICoaches.com</strong> and creator of the <strong>AI Sweet Spot Framework™</strong> — a systematic approach that has helped organisations across Asia-Pacific and the Middle East turn AI initiatives into measurable enterprise value.
+                        <br><br>
+                        Unlike consultants who teach theory, Matt has been in the trenches — building and deploying AI systems that have <strong>added $47M+ to client valuations</strong>. His approach starts with business outcomes, not technology, which is why his framework succeeds where 95% of AI initiatives fail.
+                    </p>
+
+                    <div class="matt-credentials-grid">
+                        <div class="credential-item">
+                            <div class="icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </div>
+                            <div class="text">
+                                <strong>Forbes Featured</strong>
+                                AI & Business Transformation
+                            </div>
+                        </div>
+                        <div class="credential-item">
+                            <div class="icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <div class="text">
+                                <strong>YPO Speaker</strong>
+                                Young Presidents' Organization
+                            </div>
+                        </div>
+                        <div class="credential-item">
+                            <div class="icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            </div>
+                            <div class="text">
+                                <strong>AWS & Dell Partner</strong>
+                                Enterprise AI implementations
+                            </div>
+                        </div>
+                        <div class="credential-item">
+                            <div class="icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            </div>
+                            <div class="text">
+                                <strong>500+ Executives Trained</strong>
+                                Across APAC & Middle East
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="matt-book">
+                        <div class="book-cover">Untangling AI</div>
+                        <div class="book-info">
+                            <h4>"Untangling AI"</h4>
+                            <p>The definitive guide for leaders on AI adoption strategy.</p>
+                            <p class="publisher">Published by Wiley</p>
+                        </div>
+                    </div>
+
+                    <div class="matt-global-brands">
+                        <h4>Global Brands Matt's worked with:</h4>
+                        <div class="brand-names">
+                            <span>Coca-Cola</span>
+                            <span>Dell</span>
+                            <span>Pfizer</span>
+                            <span>Baxter ANZ</span>
+                            <span>SimpleRent</span>
+                            <span>GoTeam</span>
+                            <span>MultiplAI Tech</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Framework Section (Redesigned) -->
+    <section class="framework-section">
+        <div class="container">
+            <div class="framework-header">
+                <h2>Why The AI Sweet Spot Framework™ Is Used By The Top 5% Of Companies</h2>
+                <p>While 95% of AI initiatives fail, companies using this framework consistently turn AI into measurable results. Here's why it works.</p>
+            </div>
+
+            <div class="framework-timeline">
+                <div class="framework-step">
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h3>1. Strategy</h3>
+                        <p>Which workflows, if redesigned with automation & AI, would have the greatest impact on your growth this quarter? Define outcomes before selecting tools.</p>
+                    </div>
+                </div>
+
+                <div class="framework-step">
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h3>2. People</h3>
+                        <p>How do we prepare teams before deployment happens? The difference between adoption and resistance is preparation. Most companies skip this step.</p>
+                    </div>
+                </div>
+
+                <div class="framework-step">
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h3>3. Technology</h3>
+                        <p>Which tools actually solve our defined problems? Technology comes third, not first. This is where most companies start — and fail.</p>
+                    </div>
+                </div>
+
+                <div class="framework-step">
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h3>4. Execution</h3>
+                        <p>How do we measure value at every stage? Each element builds on the last, ensuring outcomes drive decisions — not the reverse.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <span class="framework-badge">This framework has helped companies add $47M+ to their valuations</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section class="calculator-section">
+        <div class="calculator-bg-pattern"></div>
+        <div class="container">
+            <div class="calculator-header fade-in">
+                <div class="eyebrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                    Interactive Calculator
+                </div>
+                <h2>Calculate Your AI Opportunity</h2>
+                <p>See exactly how productivity gains translate to enterprise value</p>
+            </div>
+
+            <div class="calculator-card fade-in fade-in-delay-1">
+                <div class="calculator-layout">
+                    <div class="calculator-inputs">
+                        <div class="section-label">Your Organisation</div>
+
+                        <div class="input-field">
+                            <label>Number of Employees</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="calc-headcount" placeholder="500" value="500" min="1">
+                            </div>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Average Annual Salary (USD)</label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="calc-salary" placeholder="75,000" value="75000" min="1">
+                            </div>
+                        </div>
+
+                        <div class="slider-field">
+                            <div class="slider-header">
+                                <label>Expected Productivity Uplift</label>
+                                <span class="slider-value-display" id="uplift-value">20%</span>
+                            </div>
+                            <div class="slider-container">
+                                <div class="slider-track">
+                                    <div class="slider-fill" id="slider-fill" style="width: 33.3%;"></div>
+                                </div>
+                                <input type="range" id="calc-uplift" min="10" max="40" value="20">
+                            </div>
+                            <div class="slider-labels">
+                                <span>10% Conservative</span>
+                                <span>40% At Scale</span>
+                            </div>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Valuation Multiple</label>
+                            <div class="select-wrapper">
+                                <select id="calc-multiple">
+                                    <option value="6">6x — Conservative</option>
+                                    <option value="8" selected>8x — Industry Average</option>
+                                    <option value="10">10x — High Growth</option>
+                                    <option value="12">12x — Premium</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calculator-divider"></div>
+
+                    <div class="calculator-results">
+                        <div class="section-label">Your Impact Potential</div>
+
+                        <div class="results-stack">
+                            <div class="result-row">
+                                <div class="result-label">
+                                    Annual Labor Cost
+                                    <span class="formula">employees × salary</span>
+                                </div>
+                                <div class="result-value" id="result-labor">$37.5M</div>
+                            </div>
+
+                            <div class="result-row">
+                                <div class="result-label">
+                                    Annual Productivity Savings
+                                    <span class="formula">labor × uplift %</span>
+                                </div>
+                                <div class="result-value" id="result-savings">$7.5M</div>
+                            </div>
+
+                            <div class="result-hero">
+                                <div class="result-eyebrow">Potential Valuation Increase</div>
+                                <div class="result-value" id="result-valuation">$60M</div>
+                                <div class="result-context">Based on savings × valuation multiple</div>
+                            </div>
+                        </div>
+
+                        <div class="calculator-cta-section">
+                            <a href="#apply" class="cta-primary">
+                                Get Your Personalised Analysis
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                    <polyline points="12 5 19 12 12 19"/>
+                                </svg>
+                            </a>
+                            <p class="cta-note">Your concierge will show you where the value sits in your operations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="calculator-disclaimer">*Estimates based on Matt's AI Sweet Spot Framework™. Actual results vary. On your application call, we'll provide a detailed analysis specific to your operations.</p>
+        </div>
+    </section>
+
+    <!-- Case Study Section -->
+    <section class="case-study-section">
+        <div class="container">
+            <div class="case-study-container">
+                <div class="case-study-header">
+                    <div class="eyebrow">Real Results</div>
+                    <h2>How One Company Added $37.6M to Their Valuation</h2>
+                </div>
+
+                <div class="case-study-card shine-effect">
+                    <div class="case-study-hero">
+                        <div class="company-info">
+                            <h3>Case Study</h3>
+                            <h4>Specialty Insurance Platform</h4>
+                            <p>PE-backed, 400 employees, preparing for exit</p>
+                        </div>
+                        <div class="result-badge">
+                            <div class="number">$37.6M</div>
+                            <div class="label">Added to Valuation</div>
+                        </div>
+                    </div>
+
+                    <div class="case-study-content">
+                        <div class="case-study-metrics">
+                            <div class="metric-card">
+                                <div class="metric-value">32%</div>
+                                <div class="metric-label">Productivity Uplift</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">$4.7M</div>
+                                <div class="metric-label">Annual Savings</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">8x</div>
+                                <div class="metric-label">Valuation Multiple</div>
+                            </div>
+                        </div>
+
+                        <div class="case-study-quote">
+                            <p>"We'd run three AI pilots before — all failures. Matt's framework showed us we were starting in the wrong place. Within 90 days of the workshop, we had deployed agents across claims processing that our PE partners could directly tie to EBITDA improvement."</p>
+                            <div class="author">— COO, Specialty Insurance Platform</div>
+                        </div>
+
+                        <div class="case-study-timeline">
+                            <div class="step"><strong>Workshop</strong> → Identified 7 high-value opportunities</div>
+                            <span class="arrow">→</span>
+                            <div class="step"><strong>30 Days</strong> → Deployed first 3 agents</div>
+                            <span class="arrow">→</span>
+                            <div class="step"><strong>90 Days</strong> → Full productivity impact measured</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who's In The Room -->
+    <section class="whos-in-room">
+        <div class="container">
+            <h2>Who's In The Room</h2>
+            <p class="subtitle">You'll spend the day with executives who control real budgets and make real decisions</p>
+
+            <div class="room-stats">
+                <div class="room-stat">
+                    <div class="percentage">45%</div>
+                    <div class="label">CEOs & Founders</div>
+                </div>
+                <div class="room-stat">
+                    <div class="percentage">35%</div>
+                    <div class="label">C-Suite (CFO, COO, CTO)</div>
+                </div>
+                <div class="room-stat">
+                    <div class="percentage">15%</div>
+                    <div class="label">VPs & Directors</div>
+                </div>
+                <div class="room-stat">
+                    <div class="percentage">5%</div>
+                    <div class="label">PE Partners</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Companies Represented Section -->
+    <section class="companies-represented">
+        <div class="companies-box">
+            <h2>Companies Represented</h2>
+
+            <!-- Row 1 - Scrolling Left -->
+            <div class="marquee-wrapper">
+                <div class="marquee">
+                    <div class="company-chip">SAUDI ARAMCO</div>
+                    <div class="company-chip">ADNOC</div>
+                    <div class="company-chip">EMIRATES NBD</div>
+                    <div class="company-chip">MUBADALA</div>
+                    <div class="company-chip">QNB</div>
+                    <div class="company-chip">MAJID AL FUTTAIM</div>
+                    <div class="company-chip">ETIHAD</div>
+                    <div class="company-chip">DP WORLD</div>
+                    <div class="company-chip">EMAAR</div>
+                    <div class="company-chip">SABIC</div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="company-chip">SAUDI ARAMCO</div>
+                    <div class="company-chip">ADNOC</div>
+                    <div class="company-chip">EMIRATES NBD</div>
+                    <div class="company-chip">MUBADALA</div>
+                    <div class="company-chip">QNB</div>
+                    <div class="company-chip">MAJID AL FUTTAIM</div>
+                    <div class="company-chip">ETIHAD</div>
+                    <div class="company-chip">DP WORLD</div>
+                    <div class="company-chip">EMAAR</div>
+                    <div class="company-chip">SABIC</div>
+                </div>
+            </div>
+
+            <!-- Row 2 - Scrolling Right -->
+            <div class="marquee-wrapper">
+                <div class="marquee marquee-reverse">
+                    <div class="company-chip">ACCENTURE</div>
+                    <div class="company-chip">KPMG</div>
+                    <div class="company-chip">PwC</div>
+                    <div class="company-chip">EMIRATES AIRLINES</div>
+                    <div class="company-chip">QATAR AIRWAYS</div>
+                    <div class="company-chip">ALDAR</div>
+                    <div class="company-chip">MASDAR</div>
+                    <div class="company-chip">ADIB</div>
+                    <div class="company-chip">FAB</div>
+                    <div class="company-chip">TAQA</div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="company-chip">ACCENTURE</div>
+                    <div class="company-chip">KPMG</div>
+                    <div class="company-chip">PwC</div>
+                    <div class="company-chip">EMIRATES AIRLINES</div>
+                    <div class="company-chip">QATAR AIRWAYS</div>
+                    <div class="company-chip">ALDAR</div>
+                    <div class="company-chip">MASDAR</div>
+                    <div class="company-chip">ADIB</div>
+                    <div class="company-chip">FAB</div>
+                    <div class="company-chip">TAQA</div>
+                </div>
+            </div>
+
+            <div class="industry-tags">
+                <span class="industry-tag">Energy & Utilities</span>
+                <span class="industry-tag">Financial Services</span>
+                <span class="industry-tag">Technology</span>
+                <span class="industry-tag">Manufacturing</span>
+                <span class="industry-tag">Healthcare</span>
+                <span class="industry-tag">Real Estate</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="testimonials-header">
+                <div class="eyebrow">Success Stories</div>
+                <h2>What Leaders Say</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="value-headline">"Transformed How We Approach AI Adoption"</div>
+                    <p class="quote">"This workshop helped me crystallize that this is much more of a people problem than it is a technology problem. It's helped me find the balance and focus on driving change management for empowerment."</p>
+                    <div class="author">
+                        <div class="avatar">
+                            <!-- Use actual image -->
+                            <div style="width:100%;height:100%;background:#7F22FE;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">AM</div>
+                        </div>
+                        <div class="author-info">
+                            <div class="name">ANTHONY MCALLUM</div>
+                            <div class="title">Director of Sales Technology</div>
+                            <div class="company">Optus</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card video">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </div>
+                    <p>Watch Video Testimonial</p>
+                    <span>Greg Murphy, KAU</span>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="value-headline">"Clarity Over Tooling, Teams, and Frameworks"</div>
+                    <p class="quote">"Some of the things that have come out of this workshop have been clarity over the tooling, the skill sets of the teams, and the frameworks. We're now taking this back to merge into our existing processes."</p>
+                    <div class="author">
+                        <div class="avatar">
+                            <div style="width:100%;height:100%;background:#7F22FE;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">BL</div>
+                        </div>
+                        <div class="author-info">
+                            <div class="name">BARRY LEWINGTON</div>
+                            <div class="title">Founder and Owner</div>
+                            <div class="company">Bushy Consultancy</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="value-headline">"From Basic Understanding to Comprehensive Vision"</div>
+                    <p class="quote">"The methodology clicked. Being able to see this complete framework that allows somebody like myself who's not overly technical, to really see the application for AI. I now have the clarity and the tools to finally deliver."</p>
+                    <div class="author">
+                        <div class="avatar">
+                            <div style="width:100%;height:100%;background:#7F22FE;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">GM</div>
+                        </div>
+                        <div class="author-info">
+                            <div class="name">GREG MURPHY</div>
+                            <div class="title">Associate Director</div>
+                            <div class="company">KAU</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="value-headline">"Eyes Opened to Powerful Changes"</div>
+                    <p class="quote">"I thoroughly enjoyed Matt's workshop and have taken away a lot of ideas for the business. I had a few of my team members there, and they had the same experience. Thank you for opening our eyes."</p>
+                    <div class="author">
+                        <div class="avatar">
+                            <div style="width:100%;height:100%;background:#7F22FE;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">DC</div>
+                        </div>
+                        <div class="author-info">
+                            <div class="name">DONNABEL KUIZON CRUZ</div>
+                            <div class="title">President and CEO</div>
+                            <div class="company">Prime Energy</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card video">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </div>
+                    <p>Watch Video Testimonial</p>
+                    <span>Shabahat, SC Software Solutions</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Stack (Enhanced) -->
+    <section class="value-stack">
+        <div class="container">
+            <h2>What You'll Walk Away With</h2>
+            <p class="subtitle">Everything you need to start capturing AI value immediately after the workshop</p>
+
+            <div class="value-grid">
+                <div class="value-card">
+                    <span class="value-amount">$15K Value</span>
+                    <h4>AI Opportunity Analysis & Valuation Uplift Report</h4>
+                    <p>An audit showing where AI creates the greatest financial impact in your business. Know which opportunities drive profitability and how they add to enterprise value — insights that have helped companies add $37.6M+ to their valuations.</p>
+                </div>
+
+                <div class="value-card">
+                    <span class="value-amount">$10K Value</span>
+                    <h4>90-Day Implementation Roadmap & Governance Playbook</h4>
+                    <p>A detailed plan for moving from AI strategy to execution: which teams to involve, what assessments to run, and how to structure deployment for high adoption across your business.</p>
+                </div>
+
+                <div class="value-card featured">
+                    <div>
+                        <span class="value-amount">$4K Value</span>
+                        <h4>30-Day Access to Enterprise-Grade AI Tools</h4>
+                        <p><strong>Command Room</strong> maps where agents belong, quantifies financial impact, and lets you manage AI workflows from assessment through deployment.</p>
+                        <p style="margin-top: 12px;"><strong>REA.pro</strong> empowers your team to build agents and automations without burning through technical resources.</p>
+                    </div>
+                    <div class="tools-preview">
+                        <div style="height: 120px; background: rgba(255,255,255,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center;">[Command Room Preview]</div>
+                        <p>By attending, you'll see exactly how to embed these tools and roll them out in the weeks that follow.</p>
+                    </div>
+                </div>
+
+                <div class="value-card">
+                    <span class="value-amount">$5K Value</span>
+                    <h4>Pre-Built Agent Stack for Executives</h4>
+                    <p>Four ready-to-deploy AI agents that function as your leadership support system — handling administrative work so you can focus on strategic decision-making.</p>
+                </div>
+
+                <div class="value-card">
+                    <span class="value-amount">Bonus</span>
+                    <h4>A Copy of 'Untangling AI' for Every Attendee</h4>
+                    <p>Written by Matt and published by Wiley, this book establishes the shared language for identifying AI value, designing scalable systems, and leading adoption effectively.</p>
+                </div>
+            </div>
+
+            <div class="value-total">
+                <div class="total-info">
+                    <h3>Total Value: $34,000+</h3>
+                    <p>Everything included in your workshop experience</p>
+                </div>
+                <div class="investment">
+                    <div class="price">Starting at $997/seat</div>
+                    <div class="note">Team packages available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audience Section (Horizontal Scroll) -->
+    <section class="audience-section">
+        <div class="section-header">
+            <div class="eyebrow">Perfect For</div>
+            <h2>Who This Workshop Is For</h2>
+        </div>
+
+        <div class="audience-scroll-wrapper">
+            <div class="audience-scroll" id="audienceScroll">
+                <div class="audience-card">
+                    <div class="audience-card-header">
+                        <h3>C-Suite Leaders</h3>
+                    </div>
+                    <div class="audience-card-body">
+                        <h4>Your Challenge</h4>
+                        <p>Accountable for year-over-year growth and leading AI transformation that sticks.</p>
+                        <h4>What You Get</h4>
+                        <ul>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Identify biggest P&L impact areas</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Framework to evaluate AI investments</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Save months of misdirected pilots</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="audience-card">
+                    <div class="audience-card-header">
+                        <h3>PE Portfolio Managers</h3>
+                    </div>
+                    <div class="audience-card-body">
+                        <h4>Your Challenge</h4>
+                        <p>Drive enterprise value across portfolio with tools to assess readiness and quantify returns.</p>
+                        <h4>What You Get</h4>
+                        <ul>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Assess AI readiness across portfolio</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Quantify valuation uplift at exit</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Prioritize which companies first</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="audience-card">
+                    <div class="audience-card-header">
+                        <h3>Departmental Executives</h3>
+                    </div>
+                    <div class="audience-card-body">
+                        <h4>Your Challenge</h4>
+                        <p>Deliver results with tight timelines without team pushback or compliance risks.</p>
+                        <h4>What You Get</h4>
+                        <ul>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Proven high-adoption approach</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Compliance guardrails</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Practical workflow frameworks</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="audience-card">
+                    <div class="audience-card-header">
+                        <h3>Founders</h3>
+                    </div>
+                    <div class="audience-card-body">
+                        <h4>Your Challenge</h4>
+                        <p>Need highest-leverage opportunities without burning out your team on failed experiments.</p>
+                        <h4>What You Get</h4>
+                        <ul>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Highest-leverage opportunities</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Clear efficiency roadmap</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Strengthen fundraising position</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="audience-card">
+                    <div class="audience-card-header">
+                        <h3>Board Members</h3>
+                    </div>
+                    <div class="audience-card-body">
+                        <h4>Your Challenge</h4>
+                        <p>Separate AI opportunity from noise and guide leadership toward initiatives that maximize returns.</p>
+                        <h4>What You Get</h4>
+                        <ul>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Assess AI opportunities objectively</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Guide high-return initiatives</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Right due diligence questions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicators" id="scrollIndicators">
+            <div class="scroll-dot active"></div>
+            <div class="scroll-dot"></div>
+            <div class="scroll-dot"></div>
+            <div class="scroll-dot"></div>
+            <div class="scroll-dot"></div>
+        </div>
+
+        <div class="scroll-hint">
+            <span>Scroll to explore</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+    </section>
+
+    <!-- Agenda Section (Original Style) -->
+    <section class="agenda-section">
+        <div class="container">
+            <h2>Workshop Agenda</h2>
+            <p class="subtitle">An intensive one-day workshop designed to take you from AI confusion to a tailored execution roadmap</p>
+
+            <div class="agenda-tech-logos">
+                <div class="tech-logo">OpenAI</div>
+                <div class="tech-logo">AWS</div>
+                <div class="tech-logo">Google</div>
+                <div class="tech-logo">MultiplAI</div>
+            </div>
+
+            <div class="agenda-items">
+                <div class="agenda-item">
+                    <div class="session-marker">
+                        <div class="session-num">1</div>
+                    </div>
+                    <div class="session-content">
+                        <div class="session-label">SESSION 1</div>
+                        <div class="session-title">Why 95% of AI Pilots Fail</div>
+                        <p class="session-description">Understand the current AI landscape, separate hype from reality, and see what's actually working for organizations that are already seeing measurable results. By the end, you'll understand where AI creates real value, why initiatives typically fail, and what makes successful implementations different.</p>
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="session-marker">
+                        <div class="session-num">2</div>
+                    </div>
+                    <div class="session-content">
+                        <div class="session-label">SESSION 2</div>
+                        <div class="session-title">Finding Your AI Sweet Spot</div>
+                        <p class="session-description">Discover how Matt's AI Sweet Spot Framework™ aligns strategy, people, technology, and execution around business outcomes — not flashy tools. Assess how this framework applies to your business in a hands-on mapping exercise. You'll identify where your organisation is ready for AI adoption and which opportunities deliver the highest impact.</p>
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="session-marker">
+                        <div class="session-num">3</div>
+                    </div>
+                    <div class="session-content">
+                        <div class="session-label">SESSION 3</div>
+                        <div class="session-title">Quantifying Your AI Opportunity</div>
+                        <p class="session-description">Use Command Room to audit your operations and map your AI opportunities. Calculate the specific cost savings and valuation uplift your business can expect — the same process that helped a specialty insurance platform add $37.6M to their valuation.</p>
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="session-marker">
+                        <div class="session-num">4</div>
+                    </div>
+                    <div class="session-content">
+                        <div class="session-label">SESSION 4</div>
+                        <div class="session-title">How to Go From Strategy to Execution</div>
+                        <p class="session-description">Set up your AI Command Room — the platform to govern all initiatives as they scale, oversee agent deployment, and track performance. Leave with working knowledge and a 90-day execution plan that specifies the cost savings and valuation uplift your business can expect.</p>
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="session-marker">
+                        <div class="session-num">✓</div>
+                    </div>
+                    <div class="session-content">
+                        <div class="session-label">CLOSING</div>
+                        <div class="session-title">Action Planning & Next Steps</div>
+                        <p class="session-description">You've found your AI Sweet Spot, applied the tools, and built your roadmap. This final session ensures you leave ready to turn opportunities into higher output, lower costs, and increased profitability. While competitors debate strategy, your business will be scaling productivity gains that generate millions in enterprise value.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="apply">
+        <div class="container">
+            <h2>Join 150 Leaders in Doha</h2>
+            <p class="outcome">To master the AI Sweet Spot Framework™ and unlock 10-40% productivity gains that translate to millions in enterprise value.</p>
+
+            <a href="#" class="cta-primary">
+                Speak With Your Workshop Concierge
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                    <polyline points="12 5 19 12 12 19"/>
+                </svg>
+            </a>
+
+            <div class="seats-remaining">
+                <span class="count">50 of 150 seats remaining</span>
+                <div class="progress-bar">
+                    <div class="progress-fill animate-progress"></div>
+                </div>
+            </div>
+
+            <!-- What happens on call -->
+            <div class="call-details">
+                <h3>Your Concierge Call</h3>
+                <div class="call-steps">
+                    <div class="call-step">
+                        <div class="step-num">1</div>
+                        <div class="step-info">
+                            <h4>Understand Your Goals</h4>
+                            <p>Your concierge learns about your organisation and AI priorities</p>
+                        </div>
+                    </div>
+                    <div class="call-step">
+                        <div class="step-num">2</div>
+                        <div class="step-info">
+                            <h4>Preview Your Opportunity</h4>
+                            <p>See a live audit showing where AI creates value in your operations</p>
+                        </div>
+                    </div>
+                    <div class="call-step">
+                        <div class="step-num">3</div>
+                        <div class="step-info">
+                            <h4>Answer Your Questions</h4>
+                            <p>Get clarity on the workshop, logistics, and what to expect</p>
+                        </div>
+                    </div>
+                    <div class="call-step">
+                        <div class="step-num">4</div>
+                        <div class="step-info">
+                            <h4>Secure Your Seat</h4>
+                            <p>Reserve your spot and receive your pre-workshop materials</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="faqs-section">
+        <div class="container">
+            <h2>FAQs</h2>
+
+            <div class="faq-items">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>We've tried AI initiatives before but haven't seen results. What will this change?</span>
+                        <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="inner">
+                            Your past initiatives likely stalled for the same reason most do: no system for identifying value, driving adoption, and scaling results. This workshop provides what's missing — Matt's AI Sweet Spot Framework™. You'll define success before choosing tools, align teams before deployment, and build workflows that scale.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>As a leader, is this workshop worth a day of my time?</span>
+                        <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="inner">
+                            Yes. Strategic decisions about AI require understanding what's actually possible. You'll gain the ability to identify financial value of AI opportunities, frameworks to execute properly, and shared language with your team to accelerate decisions. One day of clarity saves months of misdirected pilots and wasted budget.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Who should I bring from my team?</span>
+                        <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="inner">
+                            Bring leaders who understand your business and have authority to implement changes. C-Suite should bring departmental executives. Founders should bring their leadership team. Don't bring junior staff without decision-making authority — this workshop requires people who can drive adoption.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What's the investment to attend?</span>
+                        <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="inner">
+                            Investment starts at $997 per seat, with team packages available. On your application call, we'll evaluate your operations, show you how AI can impact your bottom line, and provide exact pricing for your team.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do we need technical expertise to benefit?</span>
+                        <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="inner">
+                            No. You'll learn to evaluate opportunities, prioritize decisions, and lead adoption — not write code. The workshop is designed for business leaders. The focus is on frameworks that help you identify where AI creates the most value and guide your team through execution.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Join 150 Leaders in Doha</h2>
+            <p class="outcome">Master the framework that's helped companies add $47M+ to their valuations</p>
+            <a href="#apply" class="cta-primary">
+                Speak With Your Concierge →
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 AICoaches.com | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky header on scroll
+        const stickyHeader = document.getElementById('stickyHeader');
+        const heroSection = document.querySelector('.hero');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > heroSection.offsetHeight) {
+                stickyHeader.classList.add('visible');
+            } else {
+                stickyHeader.classList.remove('visible');
+            }
+        });
+
+        // FAQ accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('open');
+            });
+        });
+
+        // ROI Calculator
+        const calcHeadcount = document.getElementById('calc-headcount');
+        const calcSalary = document.getElementById('calc-salary');
+        const calcUplift = document.getElementById('calc-uplift');
+        const calcMultiple = document.getElementById('calc-multiple');
+        const upliftValue = document.getElementById('uplift-value');
+        const sliderFill = document.getElementById('slider-fill');
+        const resultLabor = document.getElementById('result-labor');
+        const resultSavings = document.getElementById('result-savings');
+        const resultValuation = document.getElementById('result-valuation');
+
+        function formatCurrency(num) {
+            if (num >= 1000000000) {
+                return '$' + (num / 1000000000).toFixed(1) + 'B';
+            } else if (num >= 1000000) {
+                return '$' + (num / 1000000).toFixed(1) + 'M';
+            } else if (num >= 1000) {
+                return '$' + (num / 1000).toFixed(0) + 'K';
+            } else {
+                return '$' + num.toFixed(0);
+            }
+        }
+
+        function calculateROI() {
+            const headcount = parseInt(calcHeadcount.value) || 0;
+            const salary = parseInt(calcSalary.value) || 0;
+            const uplift = parseInt(calcUplift.value) || 0;
+            const multiple = parseInt(calcMultiple.value) || 8;
+
+            // Update uplift display
+            upliftValue.textContent = uplift + '%';
+
+            // Update slider fill (10-40 range maps to 0-100%)
+            const fillPercent = ((uplift - 10) / 30) * 100;
+            sliderFill.style.width = fillPercent + '%';
+
+            // Calculate values
+            const laborCost = headcount * salary;
+            const savings = laborCost * (uplift / 100);
+            const valuation = savings * multiple;
+
+            // Animate number updates
+            animateValue(resultLabor, formatCurrency(laborCost));
+            animateValue(resultSavings, formatCurrency(savings));
+            animateValue(resultValuation, formatCurrency(valuation));
+        }
+
+        // Simple animation for value changes
+        function animateValue(element, newValue) {
+            if (element.textContent !== newValue) {
+                element.style.transform = 'scale(1.05)';
+                element.style.transition = 'transform 0.15s ease';
+                element.textContent = newValue;
+                setTimeout(() => {
+                    element.style.transform = 'scale(1)';
+                }, 150);
+            }
+        }
+
+        // Add event listeners
+        calcHeadcount.addEventListener('input', calculateROI);
+        calcSalary.addEventListener('input', calculateROI);
+        calcUplift.addEventListener('input', calculateROI);
+        calcMultiple.addEventListener('change', calculateROI);
+
+        // Initial calculation
+        calculateROI();
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            fadeObserver.observe(el);
+        });
+
+        // Add fade-in to major sections
+        document.querySelectorAll('section > .container > h2, section > .container > .section-header, .testimonial-card, .value-card, .audience-card, .case-study-card, .about-matt-grid').forEach(el => {
+            el.classList.add('fade-in');
+            fadeObserver.observe(el);
+        });
+
+        // ========================================
+        // COUNTING ANIMATION FOR NUMBERS
+        // ========================================
+        function animateCounter(element, start, end, duration, format) {
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Ease out expo
+                const easeProgress = 1 - Math.pow(1 - progress, 4);
+                const current = start + (end - start) * easeProgress;
+
+                element.textContent = format(current);
+                element.classList.add('number-updating');
+                setTimeout(() => element.classList.remove('number-updating'), 150);
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        // Format currency with animation
+        function formatCurrencyAnimated(num) {
+            if (num >= 1000000000) {
+                return '$' + (num / 1000000000).toFixed(1) + 'B';
+            } else if (num >= 1000000) {
+                return '$' + (num / 1000000).toFixed(1) + 'M';
+            } else if (num >= 1000) {
+                return '$' + Math.round(num / 1000) + 'K';
+            } else {
+                return '$' + Math.round(num);
+            }
+        }
+
+        // Store previous values for animation
+        let prevLabor = 0, prevSavings = 0, prevValuation = 0;
+
+        // Override the animateValue function with counting animation
+        function animateValue(element, newValue, prevValue, newNumericValue) {
+            if (element.textContent !== newValue) {
+                animateCounter(element, prevValue, newNumericValue, 600, formatCurrencyAnimated);
+            }
+        }
+
+        // ========================================
+        // 3D TILT EFFECT ON CARDS
+        // ========================================
+        function initTiltCards() {
+            const cards = document.querySelectorAll('.calculator-card, .case-study-card, .testimonial-card:not(.video)');
+
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = (y - centerY) / 30;
+                    const rotateY = (centerX - x) / 30;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+                });
+            });
+        }
+
+        // ========================================
+        // MAGNETIC BUTTON EFFECT
+        // ========================================
+        function initMagneticButtons() {
+            const buttons = document.querySelectorAll('.cta-primary');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+
+                    btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+                });
+
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translate(0, 0)';
+                });
+
+                // Ripple effect on click
+                btn.addEventListener('click', (e) => {
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+
+                    const rect = btn.getBoundingClientRect();
+                    ripple.style.left = (e.clientX - rect.left) + 'px';
+                    ripple.style.top = (e.clientY - rect.top) + 'px';
+
+                    btn.appendChild(ripple);
+
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+        }
+
+        // ========================================
+        // SPOTLIGHT CURSOR EFFECT
+        // ========================================
+        function initSpotlight() {
+            const containers = document.querySelectorAll('.calculator-card');
+
+            containers.forEach(container => {
+                const spotlight = document.createElement('div');
+                spotlight.classList.add('spotlight');
+                container.appendChild(spotlight);
+                container.classList.add('spotlight-container');
+
+                container.addEventListener('mousemove', (e) => {
+                    const rect = container.getBoundingClientRect();
+                    spotlight.style.left = (e.clientX - rect.left) + 'px';
+                    spotlight.style.top = (e.clientY - rect.top) + 'px';
+                });
+            });
+        }
+
+        // ========================================
+        // PARALLAX SCROLL EFFECT
+        // ========================================
+        function initParallax() {
+            const parallaxElements = document.querySelectorAll('.matt-credentials-badge, .result-badge');
+
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+
+                parallaxElements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    const speed = 0.05;
+
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        const yPos = (rect.top - window.innerHeight / 2) * speed;
+                        el.style.transform = `translateY(${yPos}px)`;
+                    }
+                });
+            });
+        }
+
+        // ========================================
+        // ANIMATE ELEMENTS ON SCROLL
+        // ========================================
+        function initScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.metric-card, .credential-item, .framework-step, .agenda-item');
+
+            const animObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-fadeUp');
+                        }, index * 100);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animatedElements.forEach(el => animObserver.observe(el));
+        }
+
+        // ========================================
+        // SMOOTH NUMBER TRANSITIONS IN CALCULATOR
+        // ========================================
+        const calcInputs = [calcHeadcount, calcSalary, calcUplift, calcMultiple];
+
+        calcInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                const headcount = parseInt(calcHeadcount.value) || 0;
+                const salary = parseInt(calcSalary.value) || 0;
+                const uplift = parseInt(calcUplift.value) || 0;
+                const multiple = parseInt(calcMultiple.value) || 8;
+
+                const laborCost = headcount * salary;
+                const savings = laborCost * (uplift / 100);
+                const valuation = savings * multiple;
+
+                // Animate to new values
+                animateCounter(resultLabor, prevLabor, laborCost, 500, formatCurrencyAnimated);
+                animateCounter(resultSavings, prevSavings, savings, 500, formatCurrencyAnimated);
+                animateCounter(resultValuation, prevValuation, valuation, 700, formatCurrencyAnimated);
+
+                prevLabor = laborCost;
+                prevSavings = savings;
+                prevValuation = valuation;
+            });
+        });
+
+        // Initialize values
+        prevLabor = 500 * 75000;
+        prevSavings = prevLabor * 0.2;
+        prevValuation = prevSavings * 8;
+
+        // ========================================
+        // INITIALIZE ALL INTERACTIONS
+        // ========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            initTiltCards();
+            initMagneticButtons();
+            initSpotlight();
+            initParallax();
+            initScrollAnimations();
+        });
+
+        // Run immediately if DOM already loaded
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            initTiltCards();
+            initMagneticButtons();
+            initSpotlight();
+            initParallax();
+            initScrollAnimations();
+        }
+
+        // ========================================
+        // HORIZONTAL SCROLL FOR AUDIENCE CARDS
+        // ========================================
+        function initHorizontalScroll() {
+            const scroll = document.getElementById('audienceScroll');
+            const dots = document.querySelectorAll('.scroll-dot');
+            if (!scroll) return;
+
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            // Mouse drag to scroll
+            scroll.addEventListener('mousedown', (e) => {
+                isDown = true;
+                scroll.style.cursor = 'grabbing';
+                startX = e.pageX - scroll.offsetLeft;
+                scrollLeft = scroll.scrollLeft;
+            });
+
+            scroll.addEventListener('mouseleave', () => {
+                isDown = false;
+                scroll.style.cursor = 'grab';
+            });
+
+            scroll.addEventListener('mouseup', () => {
+                isDown = false;
+                scroll.style.cursor = 'grab';
+            });
+
+            scroll.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - scroll.offsetLeft;
+                const walk = (x - startX) * 2;
+                scroll.scrollLeft = scrollLeft - walk;
+            });
+
+            // Update dots on scroll
+            scroll.addEventListener('scroll', () => {
+                const scrollPercentage = scroll.scrollLeft / (scroll.scrollWidth - scroll.clientWidth);
+                const activeIndex = Math.round(scrollPercentage * (dots.length - 1));
+
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === activeIndex);
+                });
+            });
+
+            // Click on dots to scroll
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    const cardWidth = 340 + 24; // card width + gap
+                    scroll.scrollTo({
+                        left: index * cardWidth,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Touch support for mobile
+            let touchStartX = 0;
+            let touchScrollLeft = 0;
+
+            scroll.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].pageX;
+                touchScrollLeft = scroll.scrollLeft;
+            }, { passive: true });
+
+            scroll.addEventListener('touchmove', (e) => {
+                const touchX = e.touches[0].pageX;
+                const walk = (touchStartX - touchX) * 1.5;
+                scroll.scrollLeft = touchScrollLeft + walk;
+            }, { passive: true });
+        }
+
+        // Initialize horizontal scroll
+        initHorizontalScroll();
+    </script>
+</body>
+</html>

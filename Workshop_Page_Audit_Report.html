@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Coaches Workshop Page - Conversion Audit Report</title>
+    <style>
+        :root {
+            --primary: #7F22FE;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+            --success: #10B981;
+            --dark: #1F2937;
+            --gray: #6B7280;
+            --light: #F3F4F6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a0a2e 0%, #3d1a78 100%);
+            color: white;
+            padding: 60px 0;
+        }
+
+        header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        header .subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 32px;
+        }
+
+        .score-card {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 32px;
+        }
+
+        .score-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px 28px;
+            text-align: center;
+            min-width: 140px;
+        }
+
+        .score-item .score {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .score-item .label {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        .score-danger { color: #FCA5A5; }
+        .score-warning { color: #FCD34D; }
+        .score-success { color: #6EE7B7; }
+
+        /* Navigation */
+        nav {
+            background: white;
+            border-bottom: 1px solid #E5E7EB;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            overflow-x: auto;
+        }
+
+        nav a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            white-space: nowrap;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--dark);
+        }
+
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 24px 0 12px;
+            color: var(--gray);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--gray);
+        }
+
+        .section-intro {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 32px;
+            max-width: 800px;
+        }
+
+        /* Issue Cards */
+        .issue-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--danger);
+        }
+
+        .issue-card.warning {
+            border-left-color: var(--warning);
+        }
+
+        .issue-card.info {
+            border-left-color: var(--primary);
+        }
+
+        .issue-card h4 {
+            margin-top: 0;
+            color: var(--dark);
+        }
+
+        .issue-card .severity {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .severity.critical {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+
+        .severity.high {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .severity.medium {
+            background: #E0E7FF;
+            color: #4F46E5;
+        }
+
+        /* Comparison Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+
+        th, td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        th {
+            background: var(--light);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        tr:hover {
+            background: #F9FAFB;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: #1F2937;
+            color: #E5E7EB;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        .code-block .comment {
+            color: #9CA3AF;
+        }
+
+        .code-block .highlight {
+            color: #FCD34D;
+        }
+
+        /* Before/After */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .comparison-box {
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .comparison-box.before {
+            background: #FEF2F2;
+            border: 1px solid #FECACA;
+        }
+
+        .comparison-box.after {
+            background: #ECFDF5;
+            border: 1px solid #A7F3D0;
+        }
+
+        .comparison-box h5 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .comparison-box.before h5 {
+            color: #DC2626;
+        }
+
+        .comparison-box.after h5 {
+            color: #059669;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .stat-box {
+            background: var(--light);
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-box .label {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 8px;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .checklist li {
+            padding: 12px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist .icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+
+        .checklist .icon.fail {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+
+        .checklist .icon.pass {
+            background: #D1FAE5;
+            color: #059669;
+        }
+
+        .checklist .icon.warn {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        /* Quote Block */
+        .quote-block {
+            background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+            border-left: 4px solid var(--primary);
+            padding: 24px 28px;
+            margin: 24px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .quote-block p {
+            font-style: italic;
+            font-size: 18px;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .quote-block .attribution {
+            font-size: 14px;
+            color: var(--gray);
+            font-style: normal;
+        }
+
+        /* Action Items */
+        .action-list {
+            background: #F0FDF4;
+            border: 1px solid #BBF7D0;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .action-list h4 {
+            color: #166534;
+            margin-top: 0;
+        }
+
+        .action-list ol {
+            margin-left: 20px;
+            color: #166534;
+        }
+
+        .action-list li {
+            margin-bottom: 8px;
+        }
+
+        /* Priority Tags */
+        .priority-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-left: 8px;
+        }
+
+        .priority-tag.p1 {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+
+        .priority-tag.p2 {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .priority-tag.p3 {
+            background: #E0E7FF;
+            color: #4F46E5;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background: #FFFBEB;
+            border: 1px solid #FCD34D;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+
+        .highlight-box strong {
+            color: #92400E;
+        }
+
+        /* Visual diagram */
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 24px 0;
+            padding: 24px;
+            background: var(--light);
+            border-radius: 12px;
+        }
+
+        .flow-step {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid #E5E7EB;
+        }
+
+        .flow-arrow {
+            color: var(--gray);
+            font-size: 20px;
+        }
+
+        /* TOC */
+        .toc {
+            background: var(--light);
+            padding: 32px;
+            border-radius: 12px;
+            margin: 32px 0;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+        }
+
+        .toc ol {
+            margin-left: 24px;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        /* Executive Summary */
+        .exec-summary {
+            background: linear-gradient(135deg, #1a0a2e 0%, #3d1a78 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            margin: 32px 0;
+        }
+
+        .exec-summary h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .exec-summary p {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .exec-summary ul {
+            margin-left: 20px;
+        }
+
+        .exec-summary li {
+            margin-bottom: 8px;
+            color: rgba(255,255,255,0.9);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Workshop Page Conversion Audit</h1>
+            <p class="subtitle">AI Coaches - Doha Workshop | February 2026</p>
+
+            <div class="score-card">
+                <div class="score-item">
+                    <div class="score score-danger">5.2/10</div>
+                    <div class="label">Overall Score</div>
+                </div>
+                <div class="score-item">
+                    <div class="score score-danger">4/10</div>
+                    <div class="label">Structure</div>
+                </div>
+                <div class="score-item">
+                    <div class="score score-warning">6/10</div>
+                    <div class="label">Copy</div>
+                </div>
+                <div class="score-item">
+                    <div class="score score-danger">5/10</div>
+                    <div class="label">Conversion</div>
+                </div>
+                <div class="score-item">
+                    <div class="score score-danger">3/10</div>
+                    <div class="label">Mobile</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#summary">Executive Summary</a></li>
+                <li><a href="#critical">Critical Issues</a></li>
+                <li><a href="#psychology">Psychology Problems</a></li>
+                <li><a href="#structure">Structure</a></li>
+                <li><a href="#copy">Copy Issues</a></li>
+                <li><a href="#conversion">Conversion</a></li>
+                <li><a href="#competitor">vs. Competitor</a></li>
+                <li><a href="#fixes">Priority Fixes</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Executive Summary -->
+        <section id="summary">
+            <div class="container">
+                <h2>Executive Summary</h2>
+
+                <div class="exec-summary">
+                    <h3>Why This Page Fails to Convert High-Quality Executives</h3>
+                    <p>This page has strong foundational content but fundamentally misunderstands its audience's psychology. It talks AT executives about problems instead of painting a vision of who they could BECOME.</p>
+
+                    <h4 style="color: #FCD34D; margin-top: 24px;">The 7 Fatal Flaws:</h4>
+                    <ul>
+                        <li><strong>Leads with failure, not aspiration</strong> — "95% fail" assumes prospects identify as failing</li>
+                        <li><strong>Buries the live event</strong> — Doha feels like an afterthought, not the main draw</li>
+                        <li><strong>Creates cognitive overload</strong> — 24,115px of scrolling, fragmented content</li>
+                        <li><strong>No visual differentiation</strong> — Everything purple, CTA doesn't pop</li>
+                        <li><strong>Sounds like a sales pitch</strong> — "Strategy call" triggers skepticism</li>
+                        <li><strong>Zero urgency or exclusivity</strong> — No seat limits, no FOMO</li>
+                        <li><strong>Missing "who's in the room"</strong> — Execs don't know if they'll be with peers</li>
+                    </ul>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="number">24,115px</div>
+                        <div class="label">Page Height (Should be ~5,000px)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">0</div>
+                        <div class="label">Video Elements</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">0</div>
+                        <div class="label">Urgency/Scarcity Elements</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">6</div>
+                        <div class="label">Steps to See Price</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Critical Issues -->
+        <section id="critical">
+            <div class="container">
+                <h2>Critical Issues</h2>
+                <p class="section-intro">These issues must be fixed immediately. They are actively killing conversions.</p>
+
+                <div class="issue-card">
+                    <span class="severity critical">CRITICAL</span>
+                    <h4>1. Copy Error in Founders Section</h4>
+                    <p>The "What You Get" text is identical to "The Challenge" — a clear copy/paste error that destroys credibility.</p>
+
+                    <div class="comparison">
+                        <div class="comparison-box before">
+                            <h5>❌ Current (Broken)</h5>
+                            <p><strong>The Challenge:</strong> You're scaling a business that needs to move fast without burning out your team...</p>
+                            <p><strong>What You Get:</strong> You're scaling a business that needs to move fast without burning out your team... <em>(Same text!)</em></p>
+                        </div>
+                        <div class="comparison-box after">
+                            <h5>✓ Should Be</h5>
+                            <p><strong>The Challenge:</strong> You're scaling a business that needs to move fast without burning out your team...</p>
+                            <p><strong>What You Get:</strong> This workshop identifies your highest-leverage opportunities so you can move fast without burnout. You'll leave with a clear roadmap...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="issue-card">
+                    <span class="severity critical">CRITICAL</span>
+                    <h4>2. Page Length is 5x Too Long</h4>
+                    <p>At 24,115px, this page requires ~25 full-screen scrolls. Industry benchmark for high-converting landing pages is 3,000-8,000px. Only 2-5% of visitors will reach the bottom.</p>
+
+                    <table>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Current</th>
+                            <th>Recommended</th>
+                            <th>Impact</th>
+                        </tr>
+                        <tr>
+                            <td>Page Height</td>
+                            <td>24,115px</td>
+                            <td>5,000-6,000px</td>
+                            <td>75% reduction needed</td>
+                        </tr>
+                        <tr>
+                            <td>FAQ Section</td>
+                            <td>5,777px</td>
+                            <td>~400px (accordion)</td>
+                            <td>93% reduction</td>
+                        </tr>
+                        <tr>
+                            <td>Audience Section</td>
+                            <td>2,383px</td>
+                            <td>~600px (tabs)</td>
+                            <td>75% reduction</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="issue-card">
+                    <span class="severity critical">CRITICAL</span>
+                    <h4>3. No Video Content Anywhere</h4>
+                    <p>This is a workshop about transformation — yet there's no video of Matt teaching, no video testimonials, no workshop footage. Video converts 2-3x better than text for high-ticket offers.</p>
+
+                    <div class="highlight-box">
+                        <strong>Competitor VJAL has 6+ video testimonials visible on their page.</strong> This creates an immediate credibility gap.
+                    </div>
+                </div>
+
+                <div class="issue-card">
+                    <span class="severity critical">CRITICAL</span>
+                    <h4>4. Testimonial Photos Are Placeholders</h4>
+                    <p>Multiple testimonials use the same placeholder image filename ("Vicky"), and several have gray overlays indicating missing photos. This severely damages credibility.</p>
+
+                    <div class="code-block">
+<span class="comment">/* Multiple testimonials using same background */</span>
+background: url(Vicky);
+
+<span class="comment">/* Gray overlay = placeholder */</span>
+background: linear-gradient(0deg, <span class="highlight">#7C7C7C</span>, <span class="highlight">#7C7C7C</span>), url(Marisha-Lakhiani);
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Psychology Problems -->
+        <section id="psychology">
+            <div class="container">
+                <h2>Psychology & Messaging Problems</h2>
+                <p class="section-intro">The page misunderstands how C-Suite executives think and what motivates them to act.</p>
+
+                <h3>The Headline Problem</h3>
+
+                <div class="comparison">
+                    <div class="comparison-box before">
+                        <h5>❌ Current Headline</h5>
+                        <p style="font-size: 24px; font-weight: 700; color: #1F2937;">"The AI Sweet Spot For C-Suite Leaders & Executives"</p>
+                        <p><strong>Problems:</strong></p>
+                        <ul>
+                            <li>Tells WHO it's for, not WHAT they get</li>
+                            <li>"AI Sweet Spot" is insider jargon</li>
+                            <li>No transformation or outcome promised</li>
+                            <li>No status elevation</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-box after">
+                        <h5>✓ Better Approach</h5>
+                        <p style="font-size: 24px; font-weight: 700; color: #1F2937;">"Become The AI-Empowered Executive Who Transforms Your Organization"</p>
+                        <p><strong>Why it works:</strong></p>
+                        <ul>
+                            <li>Focuses on transformation</li>
+                            <li>Elevates status ("AI-Empowered")</li>
+                            <li>Clear outcome (transform organization)</li>
+                            <li>Aspirational, not descriptive</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>The "95% Fail" Hook Problem</h3>
+
+                <div class="quote-block">
+                    <p>"Will a CTO who just implemented AI relate to 'my pilot failed'? In Doha, people are in a place of 'How do I get the most out of AI?' — not 'I hope I don't fail.'"</p>
+                    <span class="attribution">— Stakeholder Feedback</span>
+                </div>
+
+                <div class="issue-card warning">
+                    <span class="severity high">HIGH RISK</span>
+                    <h4>Fear-Based Hook May Not Resonate in Middle East Market</h4>
+                    <p><strong>The psychology problem:</strong> The hook assumes prospects will identify with failure. But executives — especially in status-conscious cultures — don't want to be associated with failure, even other people's.</p>
+
+                    <p><strong>What Doha executives are actually thinking:</strong></p>
+                    <ul class="checklist">
+                        <li><span class="icon pass">✓</span> "How do I transform my company?"</li>
+                        <li><span class="icon pass">✓</span> "How do I get the most value from AI?"</li>
+                        <li><span class="icon pass">✓</span> "How do I lead through this change?"</li>
+                        <li><span class="icon fail">✗</span> "Oh no, I hope my pilot doesn't fail"</li>
+                    </ul>
+
+                    <div class="action-list">
+                        <h4>Recommended Alternatives</h4>
+                        <ol>
+                            <li><strong>Aspiration + Exclusivity:</strong> "How The Region's Most Innovative Leaders Are Capturing Millions In AI-Driven Value"</li>
+                            <li><strong>Competitive (softer):</strong> "While Most Companies Struggle With AI, Here's How Top Performers Are Pulling Ahead"</li>
+                            <li><strong>Transformation:</strong> "Become The Executive Who Successfully Transforms Your Organization With AI"</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h3>Missing Emotional Arc</h3>
+
+                <p>The page has no emotional journey. It's flat information delivery instead of persuasion.</p>
+
+                <div class="comparison">
+                    <div class="comparison-box before">
+                        <h5>❌ Current Emotional Arc</h5>
+                        <p>Neutral → Negative → Neutral → Mild Positive → Neutral → Neutral → Defensive → Ask</p>
+                        <p><strong>Result:</strong> Flat line with no peak. No compelling reason to act.</p>
+                    </div>
+                    <div class="comparison-box after">
+                        <h5>✓ Effective Emotional Arc</h5>
+                        <p>TENSION → PAIN → ANGER (enemy) → HOPE → BELIEF → DESIRE → VALUE → FOMO → ACTION</p>
+                        <p><strong>Result:</strong> Crescendo that compels action at the peak.</p>
+                    </div>
+                </div>
+
+                <h3>No Clear Enemy</h3>
+
+                <div class="issue-card info">
+                    <span class="severity medium">MISSING</span>
+                    <h4>Every Great Sales Page Needs a Villain</h4>
+                    <p>Who is the enemy? The page never establishes one.</p>
+
+                    <ul class="checklist">
+                        <li><span class="icon fail">?</span> AI tools that don't deliver?</li>
+                        <li><span class="icon fail">?</span> Consultants who overcomplicate things?</li>
+                        <li><span class="icon fail">?</span> Competitors moving faster?</li>
+                        <li><span class="icon fail">?</span> The old way of doing business?</li>
+                    </ul>
+
+                    <div class="code-block">
+<span class="comment">/* Suggested enemy framing: */</span>
+
+"While your competitors are already deploying AI across their operations,
+most leadership teams are stuck in endless pilots that go nowhere.
+
+The difference isn't budget. It's not technology.
+It's that 95% of companies have <span class="highlight">no system</span> for turning AI into results.
+
+The top 5% do. This workshop gives you that system."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Structure -->
+        <section id="structure">
+            <div class="container">
+                <h2>Page Structure Problems</h2>
+
+                <h3>Current Page Flow</h3>
+
+                <table>
+                    <tr>
+                        <th>Section</th>
+                        <th>Position</th>
+                        <th>Height</th>
+                        <th>Issue</th>
+                    </tr>
+                    <tr>
+                        <td>Hero</td>
+                        <td>0-991px</td>
+                        <td>991px</td>
+                        <td>✓ Acceptable</td>
+                    </tr>
+                    <tr>
+                        <td>Problem/Solution</td>
+                        <td>991-3087px</td>
+                        <td>2,096px</td>
+                        <td>⚠️ Too text-heavy</td>
+                    </tr>
+                    <tr>
+                        <td>Testimonials 1</td>
+                        <td>3087-3803px</td>
+                        <td>716px</td>
+                        <td>⚠️ Fragmented</td>
+                    </tr>
+                    <tr>
+                        <td>Who Is This For</td>
+                        <td>3803-6186px</td>
+                        <td>2,383px</td>
+                        <td>❌ Way too long</td>
+                    </tr>
+                    <tr>
+                        <td>Meet Matt</td>
+                        <td>6186-7568px</td>
+                        <td>1,382px</td>
+                        <td>⚠️ Could condense</td>
+                    </tr>
+                    <tr>
+                        <td>Testimonials 2</td>
+                        <td>7781-8343px</td>
+                        <td>562px</td>
+                        <td>⚠️ Why separate?</td>
+                    </tr>
+                    <tr>
+                        <td>Workshop Agenda</td>
+                        <td>8343-10745px</td>
+                        <td>2,402px</td>
+                        <td>⚠️ Could be accordion</td>
+                    </tr>
+                    <tr>
+                        <td>Testimonials 3</td>
+                        <td>10745-11303px</td>
+                        <td>558px</td>
+                        <td>❌ Too many sections</td>
+                    </tr>
+                    <tr>
+                        <td>What You Get</td>
+                        <td>11303-13007px</td>
+                        <td>1,704px</td>
+                        <td>❌ Cognitive overload</td>
+                    </tr>
+                    <tr>
+                        <td>Everything Included</td>
+                        <td>13007-14583px</td>
+                        <td>1,576px</td>
+                        <td>❌ Redundant</td>
+                    </tr>
+                    <tr>
+                        <td>FAQs</td>
+                        <td>15225-21002px</td>
+                        <td>5,777px</td>
+                        <td>❌ Must be accordion</td>
+                    </tr>
+                    <tr>
+                        <td>Powered By</td>
+                        <td>21002-22835px</td>
+                        <td>1,833px</td>
+                        <td>❌ Buried too deep</td>
+                    </tr>
+                    <tr>
+                        <td>Final CTA</td>
+                        <td>22835-24115px</td>
+                        <td>1,280px</td>
+                        <td>❌ Nobody reaches this</td>
+                    </tr>
+                </table>
+
+                <h3>Recommended Structure</h3>
+
+                <div class="flow-diagram">
+                    <div class="flow-step">Hero + CTA<br><small>~800px</small></div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-step">Social Proof<br><small>~400px</small></div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-step">Problem/Solution<br><small>~600px</small></div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-step">Who's In Room<br><small>~400px</small></div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-step">Value Stack<br><small>~600px</small></div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-step">Agenda (accordion)<br><small>~500px</small></div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-step">Matt + Tools<br><small>~600px</small></div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-step">FAQs (accordion)<br><small>~400px</small></div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-step">Final CTA<br><small>~400px</small></div>
+                </div>
+
+                <p><strong>Total: ~4,700px</strong> (vs current 24,115px) — an 80% reduction</p>
+            </div>
+        </section>
+
+        <!-- Copy Issues -->
+        <section id="copy">
+            <div class="container">
+                <h2>Copy & Messaging Issues</h2>
+
+                <h3>CTA Copy Problems</h3>
+
+                <div class="issue-card">
+                    <span class="severity high">HIGH IMPACT</span>
+                    <h4>"SPEAK WITH A WORKSHOP LEADER" Doesn't Convert</h4>
+
+                    <ul class="checklist">
+                        <li><span class="icon fail">✗</span> "Workshop Leader" is vague — who am I speaking with?</li>
+                        <li><span class="icon fail">✗</span> "Strategy Call" sounds like a sales pitch</li>
+                        <li><span class="icon fail">✗</span> No value proposition in the CTA</li>
+                        <li><span class="icon fail">✗</span> No urgency or scarcity</li>
+                        <li><span class="icon fail">✗</span> Purple button on purple page = no contrast</li>
+                    </ul>
+
+                    <div class="comparison">
+                        <div class="comparison-box before">
+                            <h5>❌ Current CTA</h5>
+                            <p style="background: #7F22FE; color: white; padding: 16px 24px; border-radius: 8px; text-align: center; font-weight: 700;">SPEAK WITH A WORKSHOP LEADER</p>
+                        </div>
+                        <div class="comparison-box after">
+                            <h5>✓ Better Options</h5>
+                            <p style="background: #F59E0B; color: white; padding: 16px 24px; border-radius: 8px; text-align: center; font-weight: 700;">Get Your Free AI Opportunity Assessment →</p>
+                            <p style="background: #10B981; color: white; padding: 16px 24px; border-radius: 8px; text-align: center; font-weight: 700; margin-top: 12px;">Apply For Your Seat (213 Remaining)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Testimonial Copy Problems</h3>
+
+                <div class="issue-card warning">
+                    <span class="severity high">HIGH</span>
+                    <h4>Testimonials Require Reading to Understand Value</h4>
+
+                    <p>Each testimonial is a block of text. Visitors must read the entire quote to understand what value the person received. This creates friction.</p>
+
+                    <div class="comparison">
+                        <div class="comparison-box before">
+                            <h5>❌ Current Format</h5>
+                            <p style="font-style: italic; font-size: 14px;">"This workshop helped me crystallize that this is much more of a people problem than it is a technology problem. It's helped me find the balance and focus the weight a little bit more towards the people..."</p>
+                            <p><strong>ANTHONY MCALLUM</strong><br>Director of Sales Technology, Optus</p>
+                        </div>
+                        <div class="comparison-box after">
+                            <h5>✓ Better Format</h5>
+                            <p style="font-size: 20px; font-weight: 700; color: #1F2937; margin-bottom: 12px;">"TRANSFORMED HOW WE APPROACH AI ADOPTION"</p>
+                            <p style="font-style: italic; font-size: 14px;">"This workshop helped me crystallize that this is much more of a people problem..."</p>
+                            <p><strong>ANTHONY MCALLUM</strong><br>Director of Sales Technology, Optus<br><span style="color: #7F22FE;">🏢 Optus Logo</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Weak Testimonials Diluting Strong Ones</h3>
+
+                <table>
+                    <tr>
+                        <th>Testimonial</th>
+                        <th>Quality</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>"I find Matt's training sessions invaluable"</td>
+                        <td style="color: #DC2626;">Vague</td>
+                        <td>Cut or add specifics</td>
+                    </tr>
+                    <tr>
+                        <td>"Learning AI with Matt has been a privilege"</td>
+                        <td style="color: #DC2626;">Says nothing</td>
+                        <td>Cut</td>
+                    </tr>
+                    <tr>
+                        <td>"Great workshop, Matt"</td>
+                        <td style="color: #DC2626;">Useless</td>
+                        <td>Cut</td>
+                    </tr>
+                    <tr>
+                        <td>"Matt, you're awesome"</td>
+                        <td style="color: #DC2626;">Feels fake</td>
+                        <td>Cut</td>
+                    </tr>
+                    <tr>
+                        <td>Anthony McAllum (Optus) - people vs technology insight</td>
+                        <td style="color: #059669;">Excellent</td>
+                        <td>Feature prominently</td>
+                    </tr>
+                    <tr>
+                        <td>Greg Murphy (KAU) - framework clarity</td>
+                        <td style="color: #059669;">Excellent</td>
+                        <td>Feature prominently</td>
+                    </tr>
+                    <tr>
+                        <td>Donnabel Cruz (Prime Energy) - team transformation</td>
+                        <td style="color: #059669;">Strong</td>
+                        <td>Feature prominently</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box">
+                    <strong>5 strong testimonials beat 15 mediocre ones.</strong> Cut the weak ones entirely.
+                </div>
+            </div>
+        </section>
+
+        <!-- Conversion -->
+        <section id="conversion">
+            <div class="container">
+                <h2>Conversion Optimization Issues</h2>
+
+                <h3>Missing Urgency & Scarcity</h3>
+
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="number" style="color: #DC2626;">0</div>
+                        <div class="label">Seat Limit Mentioned</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number" style="color: #DC2626;">0</div>
+                        <div class="label">Countdown Timers</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number" style="color: #DC2626;">0</div>
+                        <div class="label">Deadlines Shown</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number" style="color: #DC2626;">0</div>
+                        <div class="label">"Spots Remaining"</div>
+                    </div>
+                </div>
+
+                <div class="action-list">
+                    <h4>Required Urgency Elements</h4>
+                    <ol>
+                        <li><strong>Seat Limit:</strong> "Limited to 300 C-Suite Leaders"</li>
+                        <li><strong>Progress Bar:</strong> "87 seats claimed | 213 remaining" [████████░░░░░░] 29% full</li>
+                        <li><strong>Deadline:</strong> "Early registration closes February 10th"</li>
+                        <li><strong>Qualification:</strong> "This workshop is exclusively for PE-backed companies with 200+ employees"</li>
+                    </ol>
+                </div>
+
+                <h3>Missing "Who's In The Room"</h3>
+
+                <div class="issue-card">
+                    <span class="severity critical">CRITICAL MISS</span>
+                    <h4>Executives Don't Know If They'll Be With Peers</h4>
+
+                    <p>C-Suite cares enormously about who else is in the room. Without this, they're committing time and money blind.</p>
+
+                    <table>
+                        <tr>
+                            <th>What They're Thinking</th>
+                            <th>What The Page Shows</th>
+                        </tr>
+                        <tr>
+                            <td>"Will I be with my peers?"</td>
+                            <td style="color: #DC2626;">Nothing</td>
+                        </tr>
+                        <tr>
+                            <td>"What's the caliber of the room?"</td>
+                            <td style="color: #DC2626;">Nothing</td>
+                        </tr>
+                        <tr>
+                            <td>"Will I make valuable connections?"</td>
+                            <td style="color: #DC2626;">Nothing</td>
+                        </tr>
+                        <tr>
+                            <td>"Who else has committed?"</td>
+                            <td style="color: #DC2626;">Nothing</td>
+                        </tr>
+                    </table>
+
+                    <div class="code-block">
+<span class="comment">/* Required section: */</span>
+
+WHO'S IN THE ROOM
+
+[Saudi Aramco] [ADNOC] [Emirates NBD] [Mubadala] [QNB]
+
+"Join executives from the region's leading organizations"
+
+INDUSTRIES REPRESENTED:
+• Energy & Utilities (34%)
+• Financial Services (28%)
+• Technology (18%)
+• Manufacturing (12%)
+• Healthcare (8%)
+
+ROLES ATTENDING:
+• CEOs & Founders: 45%
+• C-Suite (CFO, COO, CTO): 35%
+• VPs & Directors: 15%
+• PE Partners: 5%
+                    </div>
+                </div>
+
+                <h3>Call No-Show Risk</h3>
+
+                <div class="issue-card warning">
+                    <span class="severity high">HIGH RISK</span>
+                    <h4>No Mechanism to Ensure Call Attendance</h4>
+
+                    <p>Booked calls with 50%+ no-show rates kill businesses. The page has no:</p>
+
+                    <ul class="checklist">
+                        <li><span class="icon fail">✗</span> Pre-call commitment (assessment, homework)</li>
+                        <li><span class="icon fail">✗</span> Value delivered before the call</li>
+                        <li><span class="icon fail">✗</span> Personalized follow-up</li>
+                        <li><span class="icon fail">✗</span> "Application" framing (vs "sales call")</li>
+                    </ul>
+
+                    <div class="action-list">
+                        <h4>Solutions</h4>
+                        <ol>
+                            <li><strong>Pre-call investment:</strong> "Complete this 3-minute AI Readiness Assessment before your call"</li>
+                            <li><strong>Reciprocity:</strong> Send preview report 24 hours before</li>
+                            <li><strong>Personalization:</strong> SMS with "I've reviewed [Company]'s situation..."</li>
+                            <li><strong>Reframe:</strong> Call it "Application Review" not "Strategy Call"</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h3>Hidden Pricing Problem</h3>
+
+                <div class="highlight-box">
+                    <strong>Competitor VJAL shows pricing upfront ($1,300-$2,250).</strong> This lets buyers self-qualify. The current 6-step funnel (Page → CTA → Typeform → Calendly → Call → Price) creates massive friction.
+                </div>
+
+                <p><strong>Recommendation:</strong> Don't show exact price, but anchor expectations:</p>
+
+                <div class="code-block">
+"Investment starts at $997 per seat"
+"Most leadership teams invest $5,000-15,000"
+"Book a call to get your team's exact pricing"
+                </div>
+            </div>
+        </section>
+
+        <!-- Competitor -->
+        <section id="competitor">
+            <div class="container">
+                <h2>Competitor Comparison: vs. VJAL Institute</h2>
+
+                <table>
+                    <tr>
+                        <th>Element</th>
+                        <th>AI Coaches</th>
+                        <th>VJAL Institute</th>
+                        <th>Winner</th>
+                    </tr>
+                    <tr>
+                        <td>Price Transparency</td>
+                        <td>Hidden (requires call)</td>
+                        <td>$1,300-$2,250 shown</td>
+                        <td style="color: #059669;">VJAL</td>
+                    </tr>
+                    <tr>
+                        <td>Social Proof Number</td>
+                        <td>Not shown</td>
+                        <td>"36,500+ professionals trained"</td>
+                        <td style="color: #059669;">VJAL</td>
+                    </tr>
+                    <tr>
+                        <td>Video Testimonials</td>
+                        <td>None</td>
+                        <td>6+ visible</td>
+                        <td style="color: #059669;">VJAL</td>
+                    </tr>
+                    <tr>
+                        <td>Enterprise Logos</td>
+                        <td>Forbes, YPO, Dell</td>
+                        <td>Accenture, Apple, KPMG, Adobe</td>
+                        <td style="color: #059669;">VJAL</td>
+                    </tr>
+                    <tr>
+                        <td>Booking Friction</td>
+                        <td>High (call required)</td>
+                        <td>Low (direct form)</td>
+                        <td style="color: #059669;">VJAL</td>
+                    </tr>
+                    <tr>
+                        <td>Page Length</td>
+                        <td>24,115px</td>
+                        <td>~4,000px</td>
+                        <td style="color: #059669;">VJAL</td>
+                    </tr>
+                    <tr>
+                        <td>Price Point</td>
+                        <td>$997/seat</td>
+                        <td>$1,300-$2,250/seat</td>
+                        <td style="color: #7F22FE;">AI Coaches</td>
+                    </tr>
+                    <tr>
+                        <td>Deliverables Detail</td>
+                        <td>Excellent (detailed)</td>
+                        <td>Good</td>
+                        <td style="color: #7F22FE;">AI Coaches</td>
+                    </tr>
+                    <tr>
+                        <td>Facilitator Credentials</td>
+                        <td>Extensive bio</td>
+                        <td>Brief bio</td>
+                        <td style="color: #7F22FE;">AI Coaches</td>
+                    </tr>
+                    <tr>
+                        <td>Proprietary Framework</td>
+                        <td>AI Sweet Spot™</td>
+                        <td>30-60-90 Day Plan</td>
+                        <td>Tie</td>
+                    </tr>
+                </table>
+
+                <h3>What To Adopt From VJAL</h3>
+
+                <ul class="checklist">
+                    <li><span class="icon pass">→</span> Add a credibility number ("X leaders trained")</li>
+                    <li><span class="icon pass">→</span> Add video testimonials</li>
+                    <li><span class="icon pass">→</span> Dramatically shorten page</li>
+                    <li><span class="icon pass">→</span> Show more premium enterprise logos</li>
+                    <li><span class="icon pass">→</span> Consider showing starting price</li>
+                </ul>
+
+                <h3>AI Coaches Advantages To Emphasize</h3>
+
+                <ul class="checklist">
+                    <li><span class="icon pass">✓</span> Lower price point ($997 vs $1,300+)</li>
+                    <li><span class="icon pass">✓</span> More detailed deliverables</li>
+                    <li><span class="icon pass">✓</span> Stronger facilitator credentials</li>
+                    <li><span class="icon pass">✓</span> Proprietary framework (AI Sweet Spot™)</li>
+                    <li><span class="icon pass">✓</span> Tech tools included (Command Room, REA.pro)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Priority Fixes -->
+        <section id="fixes">
+            <div class="container">
+                <h2>Priority Fixes</h2>
+
+                <h3>Critical (Fix This Week)</h3>
+
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <th>Issue</th>
+                        <th>Fix</th>
+                        <th>Impact</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Founders copy error</td>
+                        <td>Fix duplicated text immediately</td>
+                        <td>Credibility</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Page too long</td>
+                        <td>Cut from 24,115px to ~5,000px</td>
+                        <td>Completion rate</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>No video</td>
+                        <td>Add Matt intro + 3 video testimonials</td>
+                        <td>Trust, conversion</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Placeholder photos</td>
+                        <td>Replace with real testimonial photos</td>
+                        <td>Credibility</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>CTA doesn't pop</td>
+                        <td>Change to orange/gold, improve copy</td>
+                        <td>Click-through</td>
+                    </tr>
+                </table>
+
+                <h3>High Priority (Fix Within 2 Weeks)</h3>
+
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <th>Issue</th>
+                        <th>Fix</th>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>No urgency</td>
+                        <td>Add seat limit, countdown, "X remaining"</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>FAQs too long</td>
+                        <td>Convert to accordion (collapsed by default)</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Missing "Who's In The Room"</td>
+                        <td>Add company logos, industries, role breakdown</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Testimonials need headlines</td>
+                        <td>Add value headline to each testimonial</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>"Live in Doha" buried</td>
+                        <td>Add prominent badge, sticky banner</td>
+                    </tr>
+                </table>
+
+                <h3>Medium Priority</h3>
+
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <th>Issue</th>
+                        <th>Fix</th>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Audience section too long</td>
+                        <td>Convert to tabs (one visible at a time)</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Value stack unclear</td>
+                        <td>Single visual system with $ values</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Framework not visualized</td>
+                        <td>Create visual diagram of AI Sweet Spot</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Tools buried</td>
+                        <td>Move Command Room + REA.pro higher</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>No call bridge</td>
+                        <td>Add "What happens on your call" section</td>
+                    </tr>
+                </table>
+
+                <div class="exec-summary" style="margin-top: 40px;">
+                    <h3>Bottom Line</h3>
+                    <p>This page has strong foundational content but is undermined by poor structure, missing psychological triggers, and critical conversion elements. The redesign should:</p>
+                    <ol style="margin-left: 20px; margin-top: 16px;">
+                        <li>Cut length by 75-80%</li>
+                        <li>Lead with aspiration, not failure</li>
+                        <li>Make "Live in Doha" a hero feature</li>
+                        <li>Add video throughout</li>
+                        <li>Show who's in the room</li>
+                        <li>Create real urgency with seat limits</li>
+                        <li>Reframe the call as an "assessment" not "strategy session"</li>
+                        <li>Use contrasting CTA color (gold/orange)</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>AI Coaches Workshop Page Audit Report</p>
+            <p>Generated: February 2026</p>
+        </div>
+    </footer>
+</body>
+</html>
