@@ -1271,91 +1271,39 @@
             line-height: 1.7;
         }
 
-        .framework-contrast {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 24px;
-            align-items: center;
+        .framework-bottom-block {
+            background: var(--primary-dark);
+            color: white;
+            padding: 40px 48px;
+            border-radius: 20px;
+            text-align: center;
             margin-top: 60px;
-            max-width: 900px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .contrast-wrong,
-        .contrast-right {
-            padding: 32px;
-            border-radius: 20px;
-            text-align: center;
-        }
-
-        .contrast-wrong {
-            background: #FEF2F2;
-            border: 2px solid #FECACA;
-        }
-
-        .contrast-right {
-            background: #ECFDF5;
-            border: 2px solid #A7F3D0;
-        }
-
-        .contrast-label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
+        .framework-bottom-block p {
+            font-size: 18px;
+            line-height: 1.8;
             margin-bottom: 16px;
+            color: rgba(255,255,255,0.95);
         }
 
-        .contrast-wrong .contrast-label {
-            color: #DC2626;
+        .framework-bottom-block p:last-child {
+            margin-bottom: 0;
         }
 
-        .contrast-right .contrast-label {
-            color: #059669;
+        .framework-bottom-block strong {
+            color: var(--cta);
         }
 
-        .contrast-wrong p,
-        .contrast-right p {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--gray-700);
-            margin-bottom: 20px;
-        }
-
-        .contrast-result {
-            font-size: 16px;
+        .framework-bottom-block .result-line {
+            font-size: 20px;
             font-weight: 700;
-            padding: 12px 20px;
-            border-radius: 10px;
-            display: inline-block;
-        }
-
-        .contrast-result.bad {
-            background: #DC2626;
-            color: white;
-        }
-
-        .contrast-result.good {
-            background: #059669;
-            color: white;
-        }
-
-        .contrast-arrow {
-            font-size: 32px;
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        @media (max-width: 768px) {
-            .framework-contrast {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .contrast-arrow {
-                transform: rotate(90deg);
-            }
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.2);
         }
 
         /* ========================================
@@ -3677,18 +3625,9 @@
                 </div>
             </div>
 
-            <div class="framework-contrast">
-                <div class="contrast-wrong">
-                    <div class="contrast-label">The Wrong Way</div>
-                    <p>Most companies start with technology first. They chase the latest AI tools, run pilots without success metrics, and watch initiatives stall as teams resist change.</p>
-                    <div class="contrast-result bad">95% of AI pilots fail this way</div>
-                </div>
-                <div class="contrast-arrow">→</div>
-                <div class="contrast-right">
-                    <div class="contrast-label">The Right Way</div>
-                    <p>When you flip the order — starting with strategy, preparing your people, then selecting technology — everything changes. Adoption soars. Results compound.</p>
-                    <div class="contrast-result good">Our clients have added $47M+ to their valuations</div>
-                </div>
+            <div class="framework-bottom-block">
+                <p>Most companies start with technology — that's why <strong>95% of AI pilots fail</strong>. But when you flip the order and lead with strategy, everything changes. Teams adopt instead of resist. Pilots turn into company-wide rollouts. Productivity gains translate directly to valuation growth.</p>
+                <p class="result-line">Companies using this framework have added <strong>$47M+</strong> to their valuations.</p>
             </div>
         </div>
     </section>
