@@ -1271,16 +1271,91 @@
             line-height: 1.7;
         }
 
-        .framework-badge {
-            display: inline-block;
-            background: var(--primary-dark);
-            color: white;
-            padding: 10px 24px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
+        .framework-contrast {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 24px;
+            align-items: center;
+            margin-top: 60px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contrast-wrong,
+        .contrast-right {
+            padding: 32px;
+            border-radius: 20px;
             text-align: center;
-            margin-top: 40px;
+        }
+
+        .contrast-wrong {
+            background: #FEF2F2;
+            border: 2px solid #FECACA;
+        }
+
+        .contrast-right {
+            background: #ECFDF5;
+            border: 2px solid #A7F3D0;
+        }
+
+        .contrast-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .contrast-wrong .contrast-label {
+            color: #DC2626;
+        }
+
+        .contrast-right .contrast-label {
+            color: #059669;
+        }
+
+        .contrast-wrong p,
+        .contrast-right p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--gray-700);
+            margin-bottom: 20px;
+        }
+
+        .contrast-result {
+            font-size: 16px;
+            font-weight: 700;
+            padding: 12px 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .contrast-result.bad {
+            background: #DC2626;
+            color: white;
+        }
+
+        .contrast-result.good {
+            background: #059669;
+            color: white;
+        }
+
+        .contrast-arrow {
+            font-size: 32px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .framework-contrast {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .contrast-arrow {
+                transform: rotate(90deg);
+            }
         }
 
         /* ========================================
@@ -3602,8 +3677,18 @@
                 </div>
             </div>
 
-            <div style="text-align: center;">
-                <span class="framework-badge">Most companies start with technology first — that's why 95% of AI pilots fail</span>
+            <div class="framework-contrast">
+                <div class="contrast-wrong">
+                    <div class="contrast-label">The Wrong Way</div>
+                    <p>Most companies start with technology first. They chase the latest AI tools, run pilots without success metrics, and watch initiatives stall as teams resist change.</p>
+                    <div class="contrast-result bad">95% of AI pilots fail this way</div>
+                </div>
+                <div class="contrast-arrow">→</div>
+                <div class="contrast-right">
+                    <div class="contrast-label">The Right Way</div>
+                    <p>When you flip the order — starting with strategy, preparing your people, then selecting technology — everything changes. Adoption soars. Results compound.</p>
+                    <div class="contrast-result good">Our clients have added $47M+ to their valuations</div>
+                </div>
             </div>
         </div>
     </section>
